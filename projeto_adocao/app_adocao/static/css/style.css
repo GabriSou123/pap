@@ -1,0 +1,97 @@
+
+
+button {
+    background-color: darkgreen;
+    color: white;
+    padding: 5px 15px;
+    text-align: center;
+    text-decoration: none;
+    font-size: medium;
+    margin: 5px 2px;
+    border-radius: 8px;
+}
+
+
+iframe {
+    height: 300px;
+    width: 700px;
+    display: block;
+    margin: 20px auto;
+    border: 2px solid #000000;
+    border-radius: 10px;
+}
+
+
+.cabecalho {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 40px;
+    background-color: #daa520;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.404);
+    height: 150px;
+    gap: 16px;
+}
+
+
+label {
+    font-size: larger;
+}
+
+
+p {
+    text-align: justify;
+    margin: 0 35px 20px 35px;
+    font-size: large;
+    line-height: 1.6;
+    margin-right: 35px;
+}
+
+
+h1 {
+    margin-left: 35px;
+    font-family: 'Trebuchet MS';
+}
+
+
+body {
+    font-family: Arial;
+    background-color: whitesmoke;
+}
+
+
+nav, .home {
+    font-family: cursive;
+    display: flex;
+    gap: 75px;
+    text-align-last: right;
+    font-size: larger;
+    font-weight: bolder;
+    margin-right: 70px;
+}
+
+
+.logo {
+    width: 120px;
+    height: auto;
+}
+
+
+a:link {
+    color: darkgreen;
+    text-decoration: none;
+}
+a:visited {
+    color:darkgreen;
+    text-decoration: none;
+}
+a:hover {
+    color:white;
+    text-decoration: underline;
+}
+a:active {
+    color: limegreen;
+    text-decoration: underline;
+}
+

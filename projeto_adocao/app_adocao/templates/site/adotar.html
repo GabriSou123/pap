@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        {% load static %}
+        <link rel="stylesheet" href="{% static 'css/style.css' %}">
+        <link rel="stylesheet" href="{% static 'css/animais.css' %}">
+        <title> Adotar | Instituto Vida Animal </title>
+        <link rel="icon" href="{% static 'imagens/logo.png' %}" type="image/png">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    </head>
+
+    <body>
+        <header class="cabecalho">
+            <div style="gap: 20px; display: flex; align-items: center;">
+                <img src="{% static 'imagens/logo.png' %}" alt="Logo do Instituto Vida Animal" class="logo">
+                <a class="home" style="font-size: 30px; font-family: cursive; font-weight: bolder;" href="/"> Instituto Vida Animal </a>
+            </div>
+
+            <nav>
+                <a style="font-size: 23px;" href="../sobreNos">Sobre Nós</a>
+                <a style="font-size: 23px;" href="../adotar">Adotar</a>
+                <a style="font-size: 23px;" href="../contactos">Contactos</a>
+            </nav>
+        </header>
+
+        <br>
+        <h1>Animais para adoção</h1>
+        <form>
+            <label style="margin-left: 35px; font-family: Arial; font-weight: bolder;">Escolha a espécie do animal que deseja:</label>
+            <select>
+                <option style="font-size: small;" value="vazio">Escolha uma opção</option>
+                <option style="font-size: medium;" value="gato">Gato</option>
+                <option style="font-size: medium;" value="cao">Cão</option>
+            </select>
+        </form>
+        <br>
+
+        <animal class="animal">
+            <caes class="caes">
+                <cao1>
+                    <img src="{% static 'imagens/cao/cao1.jpg' %}" style="width: 250px; height: auto;">
+                    <p>
+                        Nome: Rex <br>
+                        Idade: 2 anos <br>
+                        <a href="../cao1"><button type="button">Mais Informações</button></a>
+                    </p>
+                </cao1>
+
+                <cao2>
+                    <img src="{% static 'imagens/cao/cao2.jpg' %}" style="width: 250px; height: auto;">
+                    <p>
+                        Nome: Michael <br>
+                        Idade: 2 anos <br>
+                        <a href="../cao2"><button type="button">Mais Informações</button></a>
+                    </p>
+                </cao2>
+
+                <cao3>
+                    <img src="{% static 'imagens/cao/cao3.jpg' %}" style="width: 250px; height: auto;">
+                    <p>
+                        Nome: Rex <br>
+                        Idade: 2 anos <br>
+                        <a href="../cao3"><button type="button">Mais Informações</button></a>
+                    </p>
+                </cao3>
+
+                <cao4>
+                    <img src="{% static 'imagens/cao/cao4.jpg' %}" style="width: 250px; height: auto;">
+                    <p>
+                        Nome: Rex <br>
+                        Idade: 2 anos <br>
+                        <a href="../cao4"><button type="button">Mais Informações</button></a>
+                    </p>
+                </cao4>
+
+                <cao5>
+                    <img src="{% static 'imagens/cao/cao5.jpg' %}" style="width: 250px; height: auto;">
+                    <p>
+                        Nome: Rex <br>
+                        Idade: 2 anos <br>
+                        <a href="../cao5"><button type="button">Mais Informações</button></a>
+                    </p>
+                </cao5>
+
+                <cao6>
+                    <img src="{% static 'imagens/cao/cao6.jpg' %}" style="width: 250px; height: auto;">
+                    <p>
+                        Nome: Rex <br>
+                        Idade: 2 anos <br>
+                        <a href="../cao6"><button type="button">Mais Informações</button></a>
+                    </p>
+                </cao6>
+
+                <cao7>
+                    <img src="{% static 'imagens/cao/cao7.jpg' %}" style="width: 250px; height: auto;">
+                    <p>
+                        Nome: Rex <br>
+                        Idade: 2 anos <br>
+                        <a href="../cao7"><button type="button">Mais Informações</button></a>
+                    </p>
+                </cao7>
+
+                <cao8>
+                    <img src="{% static 'imagens/cao/cao8.jpg' %}" style="width: 250px; height: auto;">
+                    <p>
+                        Nome: Rex <br>
+                        Idade: 2 anos <br>
+                        <a href="../cao8"><button type="button">Mais Informações</button></a>
+                    </p>
+                </cao8>
+            </caes>
+            <br>
+            
+
+
+            <gatos class="gatos">
+                <gato1>
+                    <img src="{% static 'imagens/gato/gato1.jpg' %}" style="width: 250px; height: auto;">
+                    <p>
+                        Nome: Yoshi <br>
+                        Idade: 5 anos <br>
+                        <a href="#"><button type="button">Mais Informações</button></a>
+                    </p>
+                </gato1>
+                <gato2>
+                    <img src="{% static 'imagens/gato/gato2.jpg' %}" style="width: 250px; height: auto;">
+                    <p>
+                        Nome: Yoshi <br>
+                        Idade: 3 anos <br>
+                        <a href="#"><button type="button">Mais Informações</button></a>
+                    </p>
+                </gato2>
+                <gato3>
+                    <img src="{% static 'imagens/gato/gato3.jpg' %}" style="width: 250px; height: auto;">
+                    <p>
+                        Nome: Rex <br>
+                        Idade: 2 anos <br>
+                        <a href="#"><button type="button">Mais Informações</button></a>
+                    </p>
+                </gato3>
+                <gato4>
+                    <img src="{% static 'imagens/gato/gato4.jpg' %}" style="width: 250px; height: auto;">
+                    <p>
+                        Nome: Bob <br>
+                        Idade: ?? anos <br>
+                        <a href="../gato4"><button type="button">Mais Informações</button></a>
+                    </p>
+                </gato4>
+                <gato5>
+                    <img src="{% static 'imagens/gato/gato5.jpg' %}" style="width: 250px; height: auto;">
+                    <p>
+                        Nome: Rex <br>
+                        Idade: 2 anos <br>
+                        <a href="#"><button type="button">Mais Informações</button></a>
+                    </p>
+                </gato5>
+                <gato6>
+                    <img src="{% static 'imagens/gato/gato6.jpg' %}" style="width: 250px; height: auto;">
+                    <p>
+                        Nome: Rex <br>
+                        Idade: 2 anos <br>
+                        <a href="#"><button type="button">Mais Informações</button></a>
+                    </p>
+                </gato6>
+                <gato7>
+                    <img src="{% static 'imagens/gato/gato7.jpg' %}" style="width: 250px; height: auto;">
+                    <p>
+                        Nome: Rex <br>
+                        Idade: 2 anos <br>
+                        <a href="#"><button type="button">Mais Informações</button></a>
+                    </p>
+                </gato7>
+                <gato8>
+                    <img src="{% static 'imagens/gato/gato8.jpg' %}" style="width: 250px; height: auto;">
+                    <p>
+                        Nome: Rex <br>
+                        Idade: 2 anos <br>
+                        <a href="#"><button type="button">Mais Informações</button></a>
+                    </p>
+                </gato8>
+        </animal>
+
+        
+    </body>
+    
+
+
+
+
+    <br><br>
+    <footer>
+        <hr>
+        <p>
+            &copy; 2025 Instituto Vida Animal. Todos os direitos reservados.
+        </p>
+    </footer>
+</html>
