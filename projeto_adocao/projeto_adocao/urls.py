@@ -12,5 +12,4 @@ urlpatterns = [
     path('cao2/', views.cao2, name='cao2'),
     path('gato4/', views.gato4, name='gato4'),
     
-    
 ]
