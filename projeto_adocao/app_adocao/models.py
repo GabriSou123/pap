@@ -5,7 +5,7 @@ class Animal(models.Model):
     idade = models.IntegerField()
     especie = models.CharField(max_length=50)
     descricao = models.TextField()
-    imagem = models.ImageField(upload_to='imgAnimal/', blank=False, null=False)
+    imagem = models.ImageField(upload_to='imgAnimal/')
 
     def __str__(self):
         return self.nome

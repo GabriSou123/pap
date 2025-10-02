@@ -106,9 +106,9 @@ AUTH_PASSWORD_VALIDATORS = [
 
 LANGUAGE_CODE = 'pt-PT'
 
-TIME_ZONE = 'Portugal'
+TIME_ZONE = 'Europe/Lisbon'
 
-USE_I18N = True
+USE_I18N = False
 
 USE_TZ = True
 
@@ -129,5 +129,5 @@ STATICFILES_DIRS = [
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 
-MEDIA_URL = '/imgAnimal/'
-MEDIA_ROOT = os.path.join(BASE_DIR / 'imgAnimal')
+MEDIA_URL = '/media/'
+MEDIA_ROOT = os.path.join(BASE_DIR / 'media')
