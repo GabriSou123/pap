@@ -43,7 +43,9 @@
                         <img src="{{ animal.imagem.url }}" alt="Imagem de {{ animal.nome }}" width="200">
                     {% endif %}
                     <br>
-                    <a href="{% url 'animais_detalhe' animal.id %}">Ver detalhes</a>
+                    <button style="background-color: darkgreen; border: none; padding: 10px;">
+                        <a href="{% url 'animais_detalhe' animal.id %}" style="color: white; text-decoration: none;"> Ver detalhes </a>
+                    </button>
                 </li>
             {% empty %}
                 <li>Não há animais cadastrados.</li>
