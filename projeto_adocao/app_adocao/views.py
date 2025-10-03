@@ -1,10 +1,12 @@
-from django.shortcuts import render
+from django.shortcuts import get_object_or_404, render, redirect
+from .models import Animal
 
 def index(request):
     return render(request,'site/index.html')
 
 def adotar(request):
-    return render(request,'site/adotar.html')
+    animais = Animal.objects.all()
+    return render(request, 'site/adotar.html', {'animais': animais})
 
 def contactos(request):
     return render(request,'site/contactos.html')
@@ -20,3 +22,7 @@ def cao2(request):
 
 def gato4(request):
     return render(request,'animais/gato/gato4.html')
+
+def animaisadc(request, animal_id):
+    animal = get_object_or_404(Animal, id=animal_id)
+    return render(request, 'animais/animaisadc.html', {'animal': animal})
