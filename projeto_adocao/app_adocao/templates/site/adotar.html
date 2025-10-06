@@ -34,26 +34,27 @@
             </select>
         </form>
         <br>
-        {% for animal in animais %}
-        <li>
-            <div class="caixa">
-                <br>
-                {% if animal.imagem %}
-                    <img src="{{ animal.imagem.url }}" alt="Imagem de {{ animal.nome }}" width="200">
-                {% endif %}
-                <h2> Nome: {{ animal.nome }} </h2>
-                <h2> Idade: {{ animal.idade }} anos</h2>
+        <ul  class="lista-animais">
+            {% for animal in animais %}
+                <li>
+                    <div class=""></div>
+                        <div class="caixa">
+                            <br>
+                            {% if animal.imagem %}
+                                <img src="{{ animal.imagem.url }}" alt="Imagem de {{ animal.nome }}" width="200">
+                            {% endif %}
+                            <h2> Nome: {{ animal.nome }} </h2>
+                            <h2> Idade: {{ animal.idade }} anos</h2>
 
-                <button style="background-color: darkgreen; border: none; padding: 10px;">
-                    <a href="{% url 'animais_detalhe' animal.id %}" style="color: white; text-decoration: none;"> Ver detalhes </a>
-                </button>
-            </div>
-        </li>
-        <br>
-        {% empty %}
-            <li>Não há animais cadastrados.</li>
-        {% endfor %}
-        
+                            <button style="background-color: darkgreen; border: none; padding: 10px;">
+                                <a href="{% url 'animais_detalhe' animal.id %}" style="color: white; text-decoration: none;"> Ver detalhes </a>
+                            </button>
+                        </div>
+                </li>
+            {% empty %}
+                <li>Não há animais cadastrados.</li>
+            {% endfor %}
+        </ul>
     </body>
     
 
