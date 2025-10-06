@@ -3,7 +3,7 @@
     <head>
         {% load static %}
         <link rel="stylesheet" href="{% static 'css/style.css' %}">
-        <link rel="stylesheet" href="{% static 'css/animais.css' %}">
+        <!--<link rel="stylesheet" href="{% static 'css/animais.css' %}">--> 
         <title> Adotar | Instituto Vida Animal </title>
         <link rel="icon" href="{% static 'imagens/logo.png' %}" type="image/png">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -35,22 +35,25 @@
         </form>
         <br>
         {% for animal in animais %}
-            <li>
-                <div style="margin-left: 35px;", class="caixa">
-                    <br>
-                    {% if animal.imagem %}
-                        <img src="{{ animal.imagem.url }}" alt="Imagem de {{ animal.nome }}" width="200">
-                    {% endif %}
-                    <h2> Nome: {{ animal.nome }} </h2>
-                    <h2> Idade: {{ animal.idade }} anos</h2>
-                    <button style="background-color: darkgreen; border: none; padding: 10px;">
-                        <a href="{% url 'animais_detalhe' animal.id %}" style="color: white; text-decoration: none;"> Ver detalhes </a>
-                    </button>
-                </div>
-            </li>
+        <li>
+            <div class="caixa">
+                <br>
+                {% if animal.imagem %}
+                    <img src="{{ animal.imagem.url }}" alt="Imagem de {{ animal.nome }}" width="200">
+                {% endif %}
+                <h2> Nome: {{ animal.nome }} </h2>
+                <h2> Idade: {{ animal.idade }} anos</h2>
+
+                <button style="background-color: darkgreen; border: none; padding: 10px;">
+                    <a href="{% url 'animais_detalhe' animal.id %}" style="color: white; text-decoration: none;"> Ver detalhes </a>
+                </button>
+            </div>
+        </li>
+        <br>
         {% empty %}
             <li>Não há animais cadastrados.</li>
         {% endfor %}
+        
     </body>
     
 
