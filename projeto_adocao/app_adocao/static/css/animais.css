@@ -5,12 +5,12 @@
 }
 
 
-cao1, cao2, cao3, cao4, cao5, cao6, cao7, cao8, gato1, gato2, gato3, gato4, gato5, gato6, gato7, gato8 {
+div .caixa {
     margin-left: 35px;
     display: flex;
     align-items: center;
     padding: 0 40px;
-    background-color: white;
+    background-color: black;
     border: 1px solid #000000;
     height: 300px;
     width: 240px;
