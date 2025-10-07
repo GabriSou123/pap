@@ -20,3 +20,5 @@ def animaisadc(request, animal_id):
     return render(request, 'animais/animaisadc.html', {'animal': animal})
 
 
+def sign_up(request):
+    return render(request,'site/sign_up.html')

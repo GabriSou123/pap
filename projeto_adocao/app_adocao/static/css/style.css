@@ -1,3 +1,14 @@
+.sign_up {
+    align-content: center;
+    background-color: white;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    height: 450px;
+    width: 350px;
+    text-align: center;
+    margin: auto;
+}
+
 .lista-animais {
     display: flex;
     flex-wrap: wrap;
