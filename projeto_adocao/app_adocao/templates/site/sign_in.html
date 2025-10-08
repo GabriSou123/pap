@@ -1,9 +1,11 @@
 <!DOCTYPE html>
+
+<!-- PÁGINA ENTRAR -->
 <html>
     <head>
         {% load static %}
         <link rel="stylesheet" href="{% static 'css/style.css' %}">
-        <title> Adotar | Instituto Vida Animal </title>
+        <title> Entrar | Instituto Vida Animal </title>
         <link rel="icon" href="{% static 'imagens/logo.png' %}" type="image/png">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
     </head>
@@ -19,17 +21,16 @@
                 <a style="font-size: 23px;" href="../sobreNos">Sobre Nós</a>
                 <a style="font-size: 23px;" href="../adotar">Adotar</a>
                 <a style="font-size: 23px;" href="../contactos">Contactos</a>
-                <a style="font-size: 23px;" href="../sign_in">Sign in</a>
+                <a style="font-size: 23px;" href="../sign_in">Entrar</a>
             </nav>
         </header>
 
         <br><br><br>
         <div class="signInCaixa">
-            <h1 style="text-align: center; margin: 0px;">Sign Up</h1><br><br>
-            <label style="margin-left: 15px;">Nome: <input type="text" required autocomplete="off"></label><br>
-            <label style="margin-left: 15px;">Email: <input type="text" required autocomplete="off"></label><br>
-            <label style="margin-left: 15px;">Palavra passe: <input type="text" required autocomplete="off"></label>
-            <br><br><p style="margin-left: 0px; text-align: center;">Já tem conta? <a class="sign_up" href="../sign_up">Entre</a></p>
+            <h1 style="text-align: center; margin: 0px;">Entrar</h1><br><br>
+            <label style="margin-left: 15px; font-size: x-large;">Username ou Email: <input type="text" required autocomplete="off"></label><br>
+            <label style="margin-left: 15px; font-size: x-large;">Palavra passe: <input type="password" required autocomplete="off"></label>
+            <br><br><p style="margin-left: 0px; text-align: center; font-size: larger;">Ainda não tem conta? <a class="sign_up" href="../sign_up">Registe-se!</a></p>
             
         </div>
     </body>
