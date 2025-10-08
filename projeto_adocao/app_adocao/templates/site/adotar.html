@@ -46,9 +46,7 @@
                             <h2> Nome: {{ animal.nome }} </h2>
                             <h2> Idade: {{ animal.idade }} anos</h2>
 
-                            <button style="background-color: darkgreen; border: none; padding: 10px;">
-                                <a href="{% url 'animais_detalhe' animal.id %}" style="color: white; text-decoration: none;"> Ver detalhes </a>
-                            </button>
+                            <a href="{% url 'animais_detalhe' animal.id %}"><button> Ver detalhes </button></a>
                         </div>
                 </li>
             {% empty %}
