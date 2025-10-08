@@ -1,5 +1,7 @@
 from django.shortcuts import get_object_or_404, render, redirect
 from .models import Animal
+from django.contrib.auth import login
+
 
 def index(request):
     return render(request,'site/index.html')
@@ -22,3 +24,5 @@ def animaisadc(request, animal_id):
 
 def sign_up(request):
     return render(request,'site/sign_up.html')
+
+
