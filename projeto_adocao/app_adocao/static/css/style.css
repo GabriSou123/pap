@@ -1,9 +1,9 @@
-.sign_up {
+.signInCaixa {
     background-color: white;
     border-radius: 10px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 4px 8px black;
     height: 450px;
-    width: 350px;
+    width: 375px;
     margin: auto;
 }
 
@@ -106,19 +106,19 @@ nav, .home {
 }
 
 
-a:link {
+a:link:not(.sign_in) {
     color: darkgreen;
     text-decoration: none;
 }
-a:visited {
+a:visited:not(.sign_in) {
     color:darkgreen;
     text-decoration: none;
 }
-a:hover {
+a:hover:not(.sign_in) {
     color:white;
     text-decoration: underline;
 }
-a:active {
+a:active:not(.sign_in) {
     color: limegreen;
     text-decoration: underline;
 }

@@ -25,4 +25,5 @@ def animaisadc(request, animal_id):
 def sign_up(request):
     return render(request,'site/sign_up.html')
 
-
+def sign_in(request):
+    return render(request,'site/sign_in.html')
