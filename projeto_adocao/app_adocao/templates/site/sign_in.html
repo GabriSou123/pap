@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 
-<!-- PÁGINA REGISTAR -->
+<!-- PÁGINA Entrar -->
 <html>
     <head>
         {% load static %}
@@ -21,7 +21,7 @@
                 <a style="font-size: 23px;" href="../sobreNos">Sobre Nós</a>
                 <a style="font-size: 23px;" href="../adotar">Adotar</a>
                 <a style="font-size: 23px;" href="../contactos">Contactos</a>
-                <a style="font-size: 23px;" href="../sign_in">Entrar</a>
+                <a style="font-size: 23px;" href="{% url 'sign_in' %}">Entrar</a>
             </nav>
         </header>
 
@@ -29,26 +29,20 @@
         <div class="signCaixa"><br>
             <form method="POST">
                 {% csrf_token %}
-                <h1 style="text-align: center; margin: 0px;">Registe-se</h1><br><br>
+                <h1 style="text-align: center; margin: 0px;">Entrar</h1><br><br>
 
                 <label style="margin-left: 30px; font-size: x-large;">Username: </label><br>
-                <input style="margin-left: 30px; height: 20px; width: 400px;" type="text" name="username" required><br><br>
-
-                <label style="margin-left: 30px; font-size: x-large;">Email: </label><br>
-                <input style="margin-left: 30px; height: 20px; width: 400px;" type="text" name="email" required><br><br>
+                <input style="margin-left: 30px; height: 20px; width: 400px;" type="text" name="username" required autocomplete="off"><br><br>
 
                 <label style="margin-left: 30px; font-size: x-large;">Palavra passe: </label><br>
-                <input style="margin-left: 30px; height: 20px; width: 400px;" type="password" name="password" required><br><br>
-
-                <label style="margin-left: 30px; font-size: x-large;">Confirmar palavra passe: </label><br>
-                <input style="margin-left: 30px; height: 20px; width: 400px;" type="password" name="confirm_password" required><br><br>
+                <input style="margin-left: 30px; height: 20px; width: 400px;" type="password" name="password" required autocomplete="off"><br><br>
                 
                 <div style="text-align: center;">
                     <button style="font-size: large; background-color: darkgreen; color: white;">Registar</button>
                 </div>
 
                 <br><hr>
-                <p style="margin-left: 0px; text-align: center; font-size: larger;">Já tem conta? <a class="sign_up" href="../sign_in">Entrar</a></p>
+                <p style="margin-left: 0px; text-align: center; font-size: larger;">Ainda não tem conta? <a class="sign_up" href="../sign_up">Registe-se!</a></p>
                 
             </form>
         
