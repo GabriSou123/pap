@@ -25,17 +25,13 @@
         <h1>{{ animal.nome }}</h1>
         <p><strong>Espécie:</strong> {{ animal.especie }}</p>
         <p><strong>Idade:</strong> {{ animal.idade }} anos</p>
-        <p><strong>Descrição:</strong> {{ animal.descricao }}</p><br>
+        <p><strong>Descrição:</strong> {{ animal.descricao }}</p>
 
         {% if animal.imagem %}
-        <div style="display: flex; justify-content: center;">
             <img src="{{ animal.imagem.url }}" alt="Imagem de {{ animal.nome }}" width="400">
-        </div>
         {% endif %}
 
-        <br><br><br>
-        <div style="display: flex; justify-content: center;">
-            <a href="{% url 'adotar' %}"><button>Voltar à lista</button></a>
-        </div>
-    </body>
+        <br><br>
+        <a href="{% url 'adotar' %}"><button>Voltar à lista</button></a>
+</body>
 </html>
