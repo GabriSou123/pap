@@ -3,6 +3,8 @@ from .models import Animal
 from.models import PerfilUtilizador
 from django.contrib.auth import login, authenticate, logout
 from django.contrib.auth.models import User
+from django.contrib import messages
+from .forms import PerfilUtilizadorForm
 
 
 def index(request):
@@ -24,19 +26,26 @@ def animaisadc(request, animal_id):
     return render(request, 'animais/animaisadc.html', {'animal': animal})
 
 
+
+
 def sign_up(request):
-    return render(request,'site/sign_up.html')
     if request.method == 'POST':
-        username = request.POST['username']
-        email = request.POST['email']
-        palavraPasse = request.POST['palavraPasse']
-        confirmarPalavraPasse = request.POST['confirmarPalavraPasse']
-        if palavraPasse == confirmarPalavraPasse:
-            User.objects.create_user(username=username, email=email, palavraPasse=palavraPasse)
+        form = PerfilUtilizadorForm(request.POST)
+        if form.is_valid():
+            user = form.save(commit=False)
+            user.set_password(form.cleaned_data['palavraPasse'])
+            user.save()
+
+            messages.success(request, 'Conta criada com sucesso!')
             return redirect('sign_in')
         else:
-            return render(request, 'sign_up.html', {'error': 'As palavras-passe não coincidem'})
-    return render(request, 'sign_up.html')
+            messages.error(request, 'Por favor, corrija os erros abaixo.')
+
+    else:
+        form = PerfilUtilizadorForm()
+
+    return render(request, 'site/sign_up.html', {'form': form})
+
 
 
 def sign_in(request):

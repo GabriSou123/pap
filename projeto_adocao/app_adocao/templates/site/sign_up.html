@@ -26,6 +26,48 @@
         </header>
 
         <br><br><br>
+        
+        <div class="signCaixa">
+            <form method="POST">
+                {% csrf_token %}
+                <h1 style="text-align: center;">Registe-se</h1><br>
+    
+                <div>
+                    <label>Username: </label>
+                    {{ form.username }}
+                </div>
+                <div>
+                    <label>Email: </label>
+                    {{ form.email }}
+                </div>
+                <div>
+                    <label>Palavra Passe: </label>
+                    {{ form.palavraPasse }}
+                </div>
+                <div>
+                    <label>Confirmar Palavra Passe: </label>
+                    {{ form.confirmarPalavraPasse }}
+                </div>
+    
+                <div style="text-align: center;">
+                    <button style="font-size: large; background-color: darkgreen; color: white;" type="submit">Registar</button>
+                </div>
+    
+                <br><hr>
+                <p style="text-align: center;">Já tem conta? <a href="{% url 'sign_in' %}">Entrar</a></p>
+    
+                {% if messages %}
+                    <ul class="messages">
+                        {% for message in messages %}
+                            <li class="{{ message.tags }}">{{ message }}</li>
+                        {% endfor %}
+                    </ul>
+                {% endif %}
+            </form>
+        </div>
+
+
+        
         <div class="signCaixa"><br>
             <form method="POST">
                 {% csrf_token %}
@@ -65,58 +107,3 @@
 </html>
 
 
-<!--from django.contrib.auth.models import User
-from django.contrib.auth import login
-from django.contrib import messages
-
-def sign_up(request):
-    if request.method == 'POST':
-        username = request.POST['username']
-        email = request.POST['email']
-        password = request.POST['password']
-        confirm_password = request.POST['confirm_password']
-
-        if password != confirm_password:
-            messages.error(request, 'As palavras passe não coincidem!')
-            return redirect('sign_up')
-
-        if User.objects.filter(username=username).exists():
-            messages.error(request, 'O username já está em uso!')
-            return redirect('sign_up')
-
-        if User.objects.filter(email=email).exists():
-            messages.error(request, 'O e-mail já está em uso!')
-            return redirect('sign_up')
-
-        user = User.objects.create_user(username=username, email=email, password=password)
-        user.save()
-
-        # Perfil é criado automaticamente pelo sinal, não precisa criar aqui
-
-        login(request, user)
-        messages.success(request, 'Conta criada com sucesso!')
-        return redirect('index')
-
-    return render(request, 'site/sign_up.html')
--->
-
-
-<!--from django.contrib.auth import authenticate, login
-
-def sign_in(request):
-    if request.method == 'POST':
-        username = request.POST['username']
-        password = request.POST['password']
-
-        user = authenticate(request, username=username, password=password)
-
-        if user is not None:
-            login(request, user)
-            messages.success(request, 'Bem-vindo(a) de volta!')
-            return redirect('index')
-        else:
-            messages.error(request, 'Nome de usuário ou senha inválidos!')
-            return redirect('sign_in')
-
-    return render(request, 'site/sign_in.html')
--->
