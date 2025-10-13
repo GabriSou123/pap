@@ -1,10 +1,19 @@
 
 
-.signCaixa {
+.signInCaixa {
     background-color: white;
     border-radius: 10px;
     box-shadow: 0 4px 8px black;
-    height: 525px;
+    height: 375px;
+    width: 500px;
+    margin: auto;
+}
+
+.signUpCaixa {
+    background-color: white;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px black;
+    height: 530px;
     width: 500px;
     margin: auto;
 }

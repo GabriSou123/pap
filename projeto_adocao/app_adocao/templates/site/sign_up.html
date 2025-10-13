@@ -27,7 +27,7 @@
 
         <br><br><br>
         
-        <div class="signCaixa">
+        <div class="signUpCaixa">
             <form method="POST">
                 {% csrf_token %}
                 <br>
@@ -54,11 +54,11 @@
                 </div><br>
     
                 <div style="text-align: center;">
-                    <button style="font-size: large; background-color: darkgreen; color: white;" type="submit">Registar</button>
+                    <a href="../sign_in"><button type="submit">Registar</button></a>
                 </div>
     
                 <br><hr>
-                <p style="text-align: center;">Já tem conta? <a href="{% url 'sign_in' %}">Entrar</a></p>
+                <p style="text-align: center;">Já tem conta? <a class="sign_up" href="{% url 'sign_in' %}">Entrar</a></p>
     
                 {% if messages %}
                     <ul class="messages">

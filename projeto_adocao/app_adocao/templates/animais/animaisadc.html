@@ -28,10 +28,14 @@
         <p><strong>Descrição:</strong> {{ animal.descricao }}</p>
 
         {% if animal.imagem %}
-            <img src="{{ animal.imagem.url }}" alt="Imagem de {{ animal.nome }}" width="400">
+            <div style="text-align: center;">
+                <img src="{{ animal.imagem.url }}" alt="Imagem de {{ animal.nome }}" width="400">
+            </div>
         {% endif %}
 
         <br><br>
-        <a href="{% url 'adotar' %}"><button>Voltar à lista</button></a>
-</body>
+        <div style="text-align: center;">
+            <a href="{% url 'adotar' %}"><button>Voltar à lista</button></a>
+        </div>
+    </body>
 </html>
