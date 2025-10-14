@@ -25,34 +25,36 @@
 
         <br>
         <h1>Animais para adoção</h1>
-        <form>
+        <form method="get">
             <label style="margin-left: 35px; font-family: Arial; font-weight: bolder;">Espécies de animais:</label>
-            <select>
-                <option style="font-size: medium;" value="vazio">Todos</option>
-                <option style="font-size: medium;" value="gato">Gato</option>
-                <option style="font-size: medium;" value="cao">Cão</option>
+            <select name="especie" onchange="this.form.submit()">
+                <option value="" {% if not request.GET.especie %}selected{% endif %}>Todos</option>
+                <option value="gato" {% if request.GET.especie == "gato" %}selected{% endif %}>Gato</option>
+                <option value="cao" {% if request.GET.especie == "cao" %}selected{% endif %}>Cão</option>
             </select>
         </form>
+
         <br>
-        <ul  class="lista-animais">
+        {% if animais %}
+        <ul class="lista-animais">
             {% for animal in animais %}
                 <li>
-                    <div class=""></div>
-                        <div class="caixa">
-                            <br>
-                            {% if animal.imagem %}
-                                <img src="{{ animal.imagem.url }}" alt="Imagem de {{ animal.nome }}" width="200">
-                            {% endif %}
-                            <h2> Nome: {{ animal.nome }} </h2>
-                            <h2> Idade: {{ animal.idade }} anos</h2>
-
-                            <a href="{% url 'animais_detalhe' animal.id %}"><button> Ver detalhes </button></a>
-                        </div>
+                    <div class="caixa">
+                        <br>
+                        {% if animal.imagem %}
+                            <img src="{{ animal.imagem.url }}" alt="Imagem de {{ animal.nome }}" width="200">
+                        {% endif %}
+                        <h2> Nome: {{ animal.nome }} </h2>
+                        <h2> Idade: {{ animal.idade }} anos</h2>
+                        <a href="{% url 'animais_detalhe' animal.id %}"><button> Ver detalhes </button></a>
+                    </div>
                 </li>
-            {% empty %}
-                <li>Não há animais cadastrados.</li>
             {% endfor %}
         </ul>
+    {% else %}
+        <p>Não há animais cadastrados para a espécie selecionada.</p>
+    {% endif %}
+
     </body>
     <br><br>
     <footer>

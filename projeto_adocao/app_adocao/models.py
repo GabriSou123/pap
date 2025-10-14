@@ -1,10 +1,14 @@
 from django.db import models
 
 class Animal(models.Model):
+    ESPECIES = (
+        ('gato', 'Gato'),
+        ('cao', 'Cão'),
+    )
+    
     nome = models.CharField(max_length=100)
     idade = models.IntegerField()
-    especie = models.CharField(max_length=50)
-    descricao = models.TextField()
+    especie = models.CharField(max_length=10, choices=ESPECIES)
     imagem = models.ImageField(upload_to='imgAnimal/')
 
     def __str__(self):

@@ -10,9 +10,17 @@ from .forms import PerfilUtilizadorForm
 def index(request):
     return render(request,'site/index.html')
 
+
 def adotar(request):
-    animais = Animal.objects.all()
+    especie = request.GET.get('especie')
+    
+    if especie in ['gato', 'cao']:
+        animais = Animal.objects.filter(especie=especie)
+    else:
+        animais = Animal.objects.all()
+
     return render(request, 'site/adotar.html', {'animais': animais})
+
 
 def contactos(request):
     return render(request,'site/contactos.html')
