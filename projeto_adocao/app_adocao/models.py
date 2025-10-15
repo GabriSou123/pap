@@ -9,6 +9,7 @@ class Animal(models.Model):
     nome = models.CharField(max_length=100)
     idade = models.IntegerField()
     especie = models.CharField(max_length=10, choices=ESPECIES)
+    descricao = models.CharField()
     imagem = models.ImageField(upload_to='imgAnimal/')
 
     def __str__(self):
