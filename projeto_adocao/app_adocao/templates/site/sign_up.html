@@ -59,7 +59,8 @@
     
                 <br><hr>
                 <p style="text-align: center;">Já tem conta? <a class="sign_up" href="{% url 'sign_in' %}">Entrar</a></p>
-    
+
+                <br><br><br>
                 {% if messages %}
                     <ul class="messages">
                         {% for message in messages %}
@@ -67,6 +68,7 @@
                         {% endfor %}
                     </ul>
                 {% endif %}
+                <br><br>
             </form>
         </div>
     </body>

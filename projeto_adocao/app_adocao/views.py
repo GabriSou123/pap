@@ -55,14 +55,14 @@ def sign_up(request):
 
 
 def sign_in(request):
-    return render(request,'site/sign_in.html')
     if request.method == 'POST':
         username = request.POST['username']
-        palavraPasse = request.POST['palavraPasse']
+        palavraPasse = request.POST['password']
         user = authenticate(request, username=username, palavraPasse=palavraPasse)
         if user is not None:
             login(request, user)
             return redirect('/')
         else:
             return render(request, 'sign_in.html', {'error': 'Erro na palavra passe ou nome de utilizador.'})
-    return render(request, 'sign_in.html')
+
+    return render(request,'site/sign_in.html')
