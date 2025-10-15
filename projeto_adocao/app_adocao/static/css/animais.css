@@ -5,21 +5,3 @@
 }
 
 
-
-@media (max-width: 1400px) {
-    .caes, .gatos {
-        grid-template-columns: repeat(2, 1fr);
-    }
-}
-
-@media (max-width: 750px) {
-    .caes, .gatos {
-        grid-template-columns: 1fr;
-    }
-    cao1, cao2, cao3, cao4, cao5, cao6, cao7, cao8, cao9, gato1, gato2, gato3, gato4, gato5, gato6, gato7, gato8 {
-        width: 90px;
-        margin-left: 0;
-        padding: 0 10px;
-    }
-}
-
