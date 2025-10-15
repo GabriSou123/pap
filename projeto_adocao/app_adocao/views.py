@@ -1,10 +1,9 @@
 from django.shortcuts import get_object_or_404, render, redirect
 from .models import Animal
-from.models import PerfilUtilizador
-from django.contrib.auth import login, authenticate, logout
-from django.contrib.auth.models import User
-from django.contrib import messages
 from .forms import PerfilUtilizadorForm
+from django.contrib.auth import login, authenticate, logout
+from django.contrib import messages
+
 
 
 def index(request):
@@ -36,23 +35,22 @@ def animaisadc(request, animal_id):
 
 
 
+
 def sign_up(request):
     if request.method == 'POST':
         form = PerfilUtilizadorForm(request.POST)
+        
         if form.is_valid():
-            user = form.save(commit=False)
-            user.set_password(form.cleaned_data['palavraPasse'])
-            user.save()
-
-            messages.success(request, 'Conta criada com sucesso!')
+            form.save()
+            messages.success(request, 'Conta criada com sucesso! Você pode agora entrar.')
             return redirect('sign_in')
         else:
-            messages.error(request, 'Por favor, corrija os erros abaixo.')
-
+            messages.error(request, 'Por favor, corrija os erros no formulário.')
     else:
         form = PerfilUtilizadorForm()
 
     return render(request, 'site/sign_up.html', {'form': form})
+
 
 
 
