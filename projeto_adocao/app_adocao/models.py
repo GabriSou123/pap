@@ -8,8 +8,8 @@ class Animal(models.Model):
     
     nome = models.CharField(max_length=100)
     idade = models.IntegerField()
-    especie = models.CharField(max_length=10, choices=ESPECIES)
-    descricao = models.CharField()
+    especie = models.CharField(choices=ESPECIES)
+    descricao = models.CharField(max_length=500)
     imagem = models.ImageField(upload_to='imgAnimal/')
 
     def __str__(self):
@@ -18,9 +18,9 @@ class Animal(models.Model):
 
 
 class PerfilUtilizador(models.Model):
-    username = models.CharField(max_length=255, unique=True, default=' ')
+    username = models.CharField(max_length=100, unique=True, default=' ')
     email = models.EmailField(unique=True)
-    palavraPasse = models.CharField(max_length=255)
+    palavraPasse = models.CharField(max_length=100)
 
     def __str__(self):
         return self.username

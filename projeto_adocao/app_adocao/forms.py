@@ -1,35 +1,26 @@
 from django import forms
-from .models import PerfilUtilizador
+from django.contrib.auth.models import User
+from django.contrib.auth.forms import UserCreationForm
 
-class PerfilUtilizadorForm(forms.ModelForm):
-    confirmarPalavraPasse = forms.CharField(widget=forms.PasswordInput(attrs={
+class SignUpForm(UserCreationForm):
+    email = forms.EmailField(required=True, widget=forms.EmailInput(attrs={
         'style': 'margin-left: 30px; height: 20px; width: 400px;',
-    }), label="Confirmar Palavra Passe")
-    
-    class Meta:
-        model = PerfilUtilizador
-        fields = ['username', 'email', 'palavraPasse', 'confirmarPalavraPasse']
+    }))
 
+    class Meta:
+        model = User
+        fields = ('username', 'email', 'password1', 'password2')
         widgets = {
             'username': forms.TextInput(attrs={
                 'style': 'margin-left: 30px; height: 20px; width: 400px;',
             }),
-            'email': forms.EmailInput(attrs={
-                'style': 'margin-left: 30px; height: 20px; width: 400px;',
-            }),
-            'palavraPasse': forms.PasswordInput(attrs={
-                'style': 'margin-left: 30px; height: 20px; width: 400px;',
-            }),
-            'palavraPasse': forms.PasswordInput(attrs={
-                'style': 'margin-left: 30px; height: 20px; width: 400px;',
-            }),            
         }
 
-    def clean(self):
-        cleaned_data = super().clean()
-        password = cleaned_data.get("palavraPasse")
-        confirm_password = cleaned_data.get("confirmarPalavraPasse")
-
-        if password != confirm_password:
-            raise forms.ValidationError("As palavras passe não coincidem.")
-        return cleaned_data
+    def __init__(self, *args, **kwargs):
+        super(SignUpForm, self).__init__(*args, **kwargs)
+        self.fields['password1'].widget.attrs.update({
+            'style': 'margin-left: 30px; height: 20px; width: 400px;',
+        })
+        self.fields['password2'].widget.attrs.update({
+            'style': 'margin-left: 30px; height: 20px; width: 400px;',
+        })

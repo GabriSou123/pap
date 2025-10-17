@@ -1,6 +1,4 @@
 <!DOCTYPE html>
-
-<!-- PÁGINA REGISTAR -->
 <html>
     <head>
         {% load static %}
@@ -26,52 +24,39 @@
         </header>
 
         <br><br><br>
-        
         <div class="signUpCaixa">
-            <form method="POST">
+            <form method="POST" novalidate>
                 {% csrf_token %}
                 <br>
-                <h1 style="text-align: center;">Registe-se</h1><br>
-    
-                <div>
-                    <label style="margin-left: 30px; font-size: x-large;">Username: </label>
-                    {{ form.username }}
-                </div><br>
+                <h1 style="text-align: center; margin: 0px;">Registe-se</h1><br>
+                
+                <label style="margin-left: 30px; font-size: x-large;">Username:</label><br>
+                {{ form.username }}<br><br>
 
-                <div>
-                    <label style="margin-left: 30px; font-size: x-large;">Email: </label>
-                    {{ form.email }}
-                </div><br>
+                <label style="margin-left: 30px; font-size: x-large;">Email:</label><br>
+                {{ form.email }}<br><br>
 
-                <div>
-                    <label style="margin-left: 30px; font-size: x-large;">Palavra Passe: </label>
-                    {{ form.palavraPasse }}
-                </div><br>
+                <label style="margin-left: 30px; font-size: x-large;">Palavra Passe:</label><br>
+                {{ form.password1 }}<br><br>
 
-                <div>
-                    <label style="margin-left: 30px; font-size: x-large;">Confirmar Palavra Passe: </label>
-                    {{ form.confirmarPalavraPasse }}
-                </div><br>
-    
+                <label style="margin-left: 30px; font-size: x-large;">Confirmar Palavra Passe:</label><br>
+                {{ form.password2 }}<br><br>
+
                 <div style="text-align: center;">
-                    <a href="../sign_in"><button type="submit">Registar</button></a>
+                    <button type="submit">Registar</button>
                 </div>
-    
-                <br><hr>
-                <p style="text-align: center;">Já tem conta? <a class="sign_up" href="{% url 'sign_in' %}">Entrar</a></p>
-
-                <br><br><br>
-                {% if messages %}
-                    <ul class="messages">
-                        {% for message in messages %}
-                            <li class="{{ message.tags }}">{{ message }}</li>
-                        {% endfor %}
-                    </ul>
-                {% endif %}
-                <br><br>
+                
             </form>
+
+            {% if messages %}
+                <ul>
+                {% for message in messages %}
+                    <li class="{{ message.tags }}">{{ message }}</li>
+                {% endfor %}
+                </ul>
+            {% endif %}
+            <br><hr>
+            <p style="margin-left: 0px; text-align: center; font-size: larger;">Já tem conta? <a class="sign_up" href="{% url 'sign_in' %}">Entrar</a></p>
         </div>
     </body>
 </html>
-
-

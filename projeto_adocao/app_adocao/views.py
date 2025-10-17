@@ -1,8 +1,9 @@
 from django.shortcuts import get_object_or_404, render, redirect
 from .models import Animal
-from .forms import PerfilUtilizadorForm
 from django.contrib.auth import login, authenticate, logout
 from django.contrib import messages
+from .forms import SignUpForm
+
 
 
 
@@ -38,31 +39,30 @@ def animaisadc(request, animal_id):
 
 def sign_up(request):
     if request.method == 'POST':
-        form = PerfilUtilizadorForm(request.POST)
-        
+        form = SignUpForm(request.POST)
         if form.is_valid():
             form.save()
-            messages.success(request, 'Conta criada com sucesso! Você pode agora entrar.')
+            messages.success(request, 'Conta criada com sucesso! Agora pode entrar.')
             return redirect('sign_in')
         else:
             messages.error(request, 'Por favor, corrija os erros no formulário.')
     else:
-        form = PerfilUtilizadorForm()
+        form = SignUpForm()
 
     return render(request, 'site/sign_up.html', {'form': form})
 
 
 
 
+
 def sign_in(request):
     if request.method == 'POST':
-        username = request.POST['username']
-        palavraPasse = request.POST['password']
-        user = authenticate(request, username=username, palavraPasse=palavraPasse)
+        username = request.POST.get('username')
+        password = request.POST.get('password')
+        user = authenticate(request, username=username, password=password)
         if user is not None:
             login(request, user)
             return redirect('/')
         else:
-            return render(request, 'sign_in.html', {'error': 'Erro na palavra passe ou nome de utilizador.'})
-
-    return render(request,'site/sign_in.html')
+            return render(request, 'site/sign_in.html', {'error': 'Erro na palavra passe ou nome de utilizador.'})
+    return render(request, 'site/sign_in.html')
