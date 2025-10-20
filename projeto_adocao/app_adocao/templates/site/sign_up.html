@@ -19,7 +19,14 @@
                 <a style="font-size: 23px;" href="../sobreNos">Sobre Nós</a>
                 <a style="font-size: 23px;" href="../adotar">Adotar</a>
                 <a style="font-size: 23px;" href="../contactos">Contactos</a>
-                <a style="font-size: 23px;" href="{% url 'sign_in' %}">Entrar</a>
+                {% if user.is_authenticated %}
+                    <span style="font-size: 20px; margin-right: 10px;">Olá, {{ user.username }}!</span>
+                    <a style="font-size: 23px;" href="{% url 'logout' %}">Logout</a>
+                {% else %}
+                    <a style="font-size: 23px;" href="{% url 'sign_in' %}">Entrar</a>
+                {% endif %}
+
+
             </nav>
         </header>
 
@@ -31,16 +38,24 @@
                 <h1 style="text-align: center; margin: 0px;">Registe-se</h1><br>
                 
                 <label style="margin-left: 30px; font-size: x-large;">Username:</label><br>
-                {{ form.username }}<br><br>
+                {{ form.username }}<br>
+                {{ form.username.errors }}<br>
+
 
                 <label style="margin-left: 30px; font-size: x-large;">Email:</label><br>
-                {{ form.email }}<br><br>
+                {{ form.email }}<br>
+                {{ form.email.errors }}<br>
+
 
                 <label style="margin-left: 30px; font-size: x-large;">Palavra Passe:</label><br>
-                {{ form.password1 }}<br><br>
+                {{ form.password1 }}<br>
+                {{ form.password1.errors }}<br>
+
 
                 <label style="margin-left: 30px; font-size: x-large;">Confirmar Palavra Passe:</label><br>
-                {{ form.password2 }}<br><br>
+                {{ form.password2 }}<br>
+                {{ form.password2.errors }}<br>
+
 
                 <div style="text-align: center;">
                     <button type="submit">Registar</button>
@@ -57,6 +72,7 @@
             {% endif %}
             <br><hr>
             <p style="margin-left: 0px; text-align: center; font-size: larger;">Já tem conta? <a class="sign_up" href="{% url 'sign_in' %}">Entrar</a></p>
+
         </div>
     </body>
 </html>

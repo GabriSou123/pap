@@ -19,7 +19,12 @@
                 <a style="font-size: 23px;" href="../sobreNos">Sobre Nós</a>
                 <a style="font-size: 23px;" href="../adotar">Adotar</a>
                 <a style="font-size: 23px;" href="../contactos">Contactos</a>
-                <a style="font-size: 23px;" href="{% url 'sign_in' %}">Entrar</a>
+                {% if user.is_authenticated %}
+                    <span style="font-size: 20px; margin-right: 10px;">Olá, {{ user.username }}!</span>
+                    <a style="font-size: 23px;" href="{% url 'logout' %}">Logout</a>
+                {% else %}
+                    <a style="font-size: 23px;" href="{% url 'sign_in' %}">Entrar</a>
+                {% endif %}
             </nav>
         </header>
 

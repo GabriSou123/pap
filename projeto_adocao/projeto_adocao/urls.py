@@ -13,7 +13,11 @@ urlpatterns = [
     path('animaisadc/<int:animal_id>/', views.animaisadc, name='animais_detalhe'),
     path('sign_up/', views.sign_up, name='sign_up'),
     path('sign_in/', views.sign_in, name='sign_in'),
+    path('logout/', views.sign_out, name='logout'),
+
+
 ]
 
 if settings.DEBUG:
     urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+
