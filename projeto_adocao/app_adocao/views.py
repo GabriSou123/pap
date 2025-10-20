@@ -33,7 +33,8 @@ def animaisadc(request, animal_id):
     animal = get_object_or_404(Animal, id=animal_id)
     return render(request, 'animais/animaisadc.html', {'animal': animal})
 
-
+def apadrinhar(request):
+    return render(request, 'site/apadrinhar.html')
 
 
 

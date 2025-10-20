@@ -16,11 +16,3 @@ class Animal(models.Model):
         return self.nome
     
 
-
-class PerfilUtilizador(models.Model):
-    username = models.CharField(max_length=100, unique=True, default=' ')
-    email = models.EmailField(unique=True)
-    palavraPasse = models.CharField(max_length=100)
-
-    def __str__(self):
-        return self.username
