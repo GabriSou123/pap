@@ -24,3 +24,4 @@ class SignUpForm(UserCreationForm):
         self.fields['password2'].widget.attrs.update({
             'style': 'margin-left: 30px; height: 20px; width: 400px;',
         })
+
