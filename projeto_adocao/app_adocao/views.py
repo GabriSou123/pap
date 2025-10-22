@@ -33,8 +33,10 @@ def animaisadc(request, animal_id):
     animal = get_object_or_404(Animal, id=animal_id)
     return render(request, 'animais/animaisadc.html', {'animal': animal})
 
-def apadrinhar(request):
-    return render(request, 'site/apadrinhar.html')
+def apadrinhar(request, animal_id, user_id):
+    animal = get_object_or_404(Animal, id=animal_id)
+    
+    return render(request, 'site/apadrinhar.html', {'animal': animal})
 
 
 
@@ -70,7 +72,6 @@ def sign_in(request):
 
 from django.contrib.auth import logout
 
-from django.contrib.auth import logout
 
 def sign_out(request):
     logout(request)

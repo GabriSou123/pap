@@ -23,7 +23,7 @@
                     <span style="font-size: 20px; margin-right: 10px;">Olá, {{ user.username }}!</span>
                     <a style="font-size: 23px;" href="{% url 'logout' %}">Logout</a>
                 {% else %}
-                    <a style="font-size: 23px;" href="{% url 'sign_in' %}">Entrar</a>
+                    <a style="font-size: 23px;" href="{% url 'sign_in' %}">Login</a>
                 {% endif %}
             </nav>
         </header>

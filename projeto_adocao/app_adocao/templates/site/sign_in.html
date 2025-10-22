@@ -25,7 +25,7 @@
                     <span style="font-size: 20px; margin-right: 10px;">Olá, {{ user.username }}!</span>
                     <a style="font-size: 23px;" href="{% url 'logout' %}">Logout</a>
                 {% else %}
-                    <a style="font-size: 23px;" href="{% url 'sign_in' %}">Entrar</a>
+                    <a style="font-size: 23px;" href="{% url 'sign_in' %}">Login</a>
                 {% endif %}
             </nav>
         </header>
@@ -45,8 +45,6 @@
                 <div style="text-align: center;">
                     <button type="submit" style="font-size: large; background-color: darkgreen; color: white;">Entrar</button>
                 </div>
-
-                
                 
             </form>
             <br><hr>
@@ -56,13 +54,3 @@
 </html>
 
 
-
-<!--
-    Requerir log in algo (caso precise)
-    
-    from django.contrib.auth.decorators import login_required
-
-@login_required
-def minha_view(request):
-    ...
--->
