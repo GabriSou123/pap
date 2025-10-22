@@ -16,5 +16,3 @@ class Animal(models.Model):
         return self.nome
     
 
-class Apadrinhar(models.Model):
-    

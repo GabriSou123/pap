@@ -25,7 +25,7 @@
                 {% else %}
                     <a style="font-size: 23px;" href="{% url 'sign_in' %}">Login</a>
                 {% endif %}
-
+                <button id="darkModeToggle">Modo Escuro</button>
 
             </nav>
         </header>
@@ -73,5 +73,27 @@
             <p style="margin-left: 0px; text-align: center; font-size: larger;">Já tem conta? <a class="sign_up" href="{% url 'sign_in' %}">Entrar</a></p>
 
         </div>
+        <script>
+            const toggleBtn = document.getElementById('darkModeToggle');
+            const body = document.body;
+    
+            // Verifica se o modo escuro estava ativado antes (localStorage)
+            if(localStorage.getItem('darkMode') === 'enabled') {
+                body.classList.add('dark-mode');
+                toggleBtn.textContent = "Modo Claro";
+            }
+    
+            toggleBtn.addEventListener('click', () => {
+                body.classList.toggle('dark-mode');
+    
+                if(body.classList.contains('dark-mode')) {
+                    toggleBtn.textContent = "Modo Claro";
+                    localStorage.setItem('darkMode', 'enabled');
+                } else {
+                    toggleBtn.textContent = "Modo Escuro";
+                    localStorage.setItem('darkMode', 'disabled');
+                }
+            });
+        </script>
     </body>
 </html>

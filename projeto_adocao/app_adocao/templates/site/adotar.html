@@ -25,6 +25,7 @@
                 {% else %}
                     <a style="font-size: 23px;" href="{% url 'sign_in' %}">Login</a>
                 {% endif %}
+                <button id="darkModeToggle">Modo Escuro</button>
             </nav>
         </header>
 
@@ -69,4 +70,26 @@
             &copy; 2025 Instituto Vida Animal. Todos os direitos reservados.
         </p>
     </footer>
+    <script>
+        const toggleBtn = document.getElementById('darkModeToggle');
+        const body = document.body;
+
+        // Verifica se o modo escuro estava ativado antes (localStorage)
+        if(localStorage.getItem('darkMode') === 'enabled') {
+            body.classList.add('dark-mode');
+            toggleBtn.textContent = "Modo Claro";
+        }
+
+        toggleBtn.addEventListener('click', () => {
+            body.classList.toggle('dark-mode');
+
+            if(body.classList.contains('dark-mode')) {
+                toggleBtn.textContent = "Modo Claro";
+                localStorage.setItem('darkMode', 'enabled');
+            } else {
+                toggleBtn.textContent = "Modo Escuro";
+                localStorage.setItem('darkMode', 'disabled');
+            }
+        });
+    </script>
 </html>
