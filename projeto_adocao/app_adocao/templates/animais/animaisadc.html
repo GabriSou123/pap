@@ -25,10 +25,11 @@
                 {% else %}
                     <a style="font-size: 23px;" href="{% url 'sign_in' %}">Login</a>
                 {% endif %}
-                <button id="darkModeToggle">Modo Escuro</button>
+                
             </nav>
         </header>
         
+        <button id="darkModeToggle">Modo Escuro</button>
         <h1>{{ animal.nome }}</h1>
         <p><strong>Espécie:</strong> {{ animal.especie }}</p>
         <p><strong>Idade:</strong> {{ animal.idade }} anos</p>

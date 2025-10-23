@@ -25,10 +25,11 @@
                 {% else %}
                     <a style="font-size: 23px;" href="{% url 'sign_in' %}">Login</a>
                 {% endif %}
-                <button id="darkModeToggle">Modo Escuro</button>
+                
             </nav>
         </header>
 
+        <button id="darkModeToggle">Modo Escuro</button>
         <br>
         {% if user.is_authenticated %}
             <h1>Apadrinhar</h1>

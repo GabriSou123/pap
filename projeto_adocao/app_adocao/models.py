@@ -6,7 +6,7 @@ class Animal(models.Model):
         ('cao', 'Cão'),
     )
     
-    nome = models.CharField(max_length=100)
+    nome = models.CharField(max_length=15)
     idade = models.IntegerField()
     especie = models.CharField(choices=ESPECIES)
     descricao = models.CharField(max_length=500)
