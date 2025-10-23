@@ -53,7 +53,10 @@
                         {% endif %}
                         <h2> Nome: {{ animal.nome }} </h2>
                         <h2> Idade: {{ animal.idade }} anos</h2>
-                        <a href="{% url 'animais_detalhe' animal.id %}"><button> Ver detalhes </button></a>
+                            <a href="{% url 'animais_detalhe' animal.id %}"><button> Ver detalhes </button></a>
+                        {% if user.is_authenticated %}
+                            <a href="{% url 'apadrinhar' %}"><button>Apadrinhar</button></a>
+                        {% endif %}
                     </div>
                 </li>
             {% endfor %}

@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+    <!DOCTYPE html>
 <html>
     <head>
         {% load static %}
@@ -36,14 +36,14 @@
             <p></p>
         {% else %}
             <h1>Por favor faça login</h1>
-            <p>Para aceder a esta página, por favor faça login.</p>
+            <p>Para aceder a esta página, por favor faça <a class="sign_up" href="{% url 'sign_in' %}">login</a>.</p>
         {% endif %}
 
         <script>
             const toggleBtn = document.getElementById('darkModeToggle');
             const body = document.body;
     
-            // Verifica se o modo escuro estava ativado antes (localStorage)
+            // Verifica se o modo escuro estava ativado antes
             if(localStorage.getItem('darkMode') === 'enabled') {
                 body.classList.add('dark-mode');
                 toggleBtn.textContent = "Modo Claro";
