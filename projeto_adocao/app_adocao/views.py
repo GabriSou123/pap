@@ -6,7 +6,6 @@ from .forms import SignUpForm
 
 
 
-
 def index(request):
     return render(request,'site/index.html')
 
@@ -67,8 +66,6 @@ def sign_in(request):
         else:
             return render(request, 'site/sign_in.html', {'error': 'Erro na palavra passe ou nome de utilizador.'})
     return render(request, 'site/sign_in.html')
-
-from django.contrib.auth import logout
 
 
 def sign_out(request):
