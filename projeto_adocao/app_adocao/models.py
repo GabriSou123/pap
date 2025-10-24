@@ -1,4 +1,5 @@
 from django.db import models
+from django.contrib.auth.models import User
 
 class Animal(models.Model):
     ESPECIES = (
@@ -11,6 +12,15 @@ class Animal(models.Model):
     especie = models.CharField(choices=ESPECIES)
     descricao = models.CharField(max_length=500)
     imagem = models.ImageField(upload_to='imgAnimal/')
+
+
+    padrinho = models.ForeignKey(
+            User,
+            on_delete=models.SET_NULL,
+            null=True,
+            blank=True,
+            related_name='animais_apadrinhados'
+        )
 
     def __str__(self):
         return self.nome

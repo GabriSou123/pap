@@ -3,6 +3,7 @@ from .models import Animal
 from django.contrib.auth import login, authenticate, logout
 from django.contrib import messages
 from .forms import SignUpForm
+from django.contrib.auth.decorators import login_required
 
 
 
@@ -52,9 +53,6 @@ def sign_up(request):
     return render(request, 'site/sign_up.html', {'form': form})
 
 
-
-
-
 def sign_in(request):
     if request.method == 'POST':
         username = request.POST.get('username')
@@ -71,3 +69,17 @@ def sign_in(request):
 def sign_out(request):
     logout(request)
     return redirect('index')
+
+
+
+@login_required
+def apadrinhar_animal(request, animal_id):
+    animal = get_object_or_404(Animal, id=animal_id)
+
+    if animal.padrinho is not None:
+        return render(request, 'erro.html', {'mensagem': 'Este animal já foi apadrinhado.'})
+
+    animal.padrinho = request.user
+    animal.save()
+
+    return redirect('adotar')

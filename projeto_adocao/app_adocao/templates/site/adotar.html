@@ -74,6 +74,38 @@
             &copy; 2025 Instituto Vida Animal. Todos os direitos reservados.
         </p>
     </footer>
+
+
+
+
+
+
+    <!--{% for animal in animais %}
+    <div class="animal-card">
+      <h3>{{ animal.nome }}</h3>
+      <p>Espécie: {{ animal.especie }}</p>
+      <p>Idade: {{ animal.idade }}</p>
+      {% if animal.foto %}
+        <img src="{{ animal.foto.url }}" alt="{{ animal.nome }}">
+      {% endif %}
+      {% if animal.padrinho %}
+        <p><strong>Já foi apadrinhado por {{ animal.padrinho.username }}</strong></p>
+      {% else %}
+        {% if user.is_authenticated %}
+          <a href="{% url 'apadrinhar_animal' animal.id %}" class="btn btn-success">Apadrinhar</a>
+        {% else %}
+          <p><a href="{% url 'login' %}">Inicia sessão</a> para apadrinhar</p>
+        {% endif %}
+      {% endif %}
+    </div>
+  {% endfor %}
+  
+-->
+
+
+
+
+    
     <script>
         const toggleBtn = document.getElementById('darkModeToggle');
         const body = document.body;
