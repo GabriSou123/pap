@@ -1,68 +1,72 @@
 <!DOCTYPE html>
-<html>
-    <head>
-        {% load static %}
-        <link rel="stylesheet" href="{% static 'css/style.css' %}">
-        <title> {{ animal.nome }} | Instituto Vida Animal </title>
-        <link rel="icon" href="{% static 'imagens/logo.png' %}" type="image/png">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    </head>
+<html lang="pt">
+<head>
+    {% load static %}
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{ animal.nome }} | Instituto Vida Animal</title>
+    <link rel="icon" href="{% static 'imagens/logo.png' %}" type="image/png">
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+</head>
 
-    <body>
-        <header class="cabecalho">
-            <div style="gap: 20px; display: flex; align-items: center;">
-                <img src="{% static 'imagens/logo.png' %}" alt="Logo do Instituto Vida Animal" class="logo">
-                <a class="home" style="font-size: 32px; font-family: cursive; font-weight: bolder;" href="/"> Instituto Vida Animal </a>
-            </div>
-
-            <nav>
-                <a style="font-size: 23px;" href="../../sobreNos">Sobre Nós</a>
-                <a style="font-size: 23px;" href="../../adotar">Adotar</a>
-                <a style="font-size: 23px;" href="../../contactos">Contactos</a>
-                {% if user.is_authenticated %}
-                    <span style="font-size: 20px; margin-right: 10px;">Olá, {{ user.username }}!</span>
-                    <a style="font-size: 23px;" href="{% url 'logout' %}">Logout</a>
-                {% else %}
-                    <a style="font-size: 23px;" href="{% url 'sign_in' %}">Login</a>
-                {% endif %}
-                
-            </nav>
-        </header>
-        
-        <button id="darkModeToggle">Modo Escuro</button>
-        <h1>{{ animal.nome }}</h1>
-        <p><strong>Espécie:</strong> {{ animal.especie }}</p>
-        <p><strong>Idade:</strong> {{ animal.idade }} anos</p>
-        <p><strong>Descrição:</strong> {{ animal.descricao }}</p>
-
-        <div style="text-align: center;">
-            <img src="{{ animal.imagem.url }}" alt="Imagem de {{ animal.nome }}" width="400">
+<body>
+    <header class="cabecalho">
+        <div style="gap: 20px; display: flex; align-items: center;">
+            <img src="{% static 'imagens/logo.png' %}" alt="Logo do Instituto Vida Animal" class="logo">
+            <a class="home" style="font-size: 32px;" href="/">Instituto Vida Animal</a>
         </div>
 
-        <br><br>
-        <div style="text-align: center;">
-            <a href="{% url 'adotar' %}"><button>Voltar à lista</button></a>
+        <nav>
+            <a style="font-size: 23px;" href="../sobreNos" class="lista">Sobre Nós</a>
+            <a style="font-size: 23px;" href="../adotar">Adotar</a>
+            <a style="font-size: 23px;" href="../contactos">Contactos</a>
             {% if user.is_authenticated %}
-                <a href="{% url 'apadrinhar' animal.id %}"><button>Apadrinhar</button></a>
+                <span style="font-size: 20px; margin-right: 10px;">Olá, {{ user.username }}!</span>
+                <a style="font-size: 23px;" href="{% url 'logout' %}">Logout</a>
+            {% else %}
+                <a style="font-size: 23px;" href="{% url 'sign_in' %}">Login</a>
             {% endif %}
-        </div>
             
-        
-    </body>
+        </nav>
+    </header>
+
+    <!-- BOTÃO DARK MODE -->
+    <button id="darkModeToggle">Modo Escuro</button>
+
+    <!-- CONTEÚDO PRINCIPAL -->
+    <main>
+        <h1>{{ animal.nome }}</h1>
+
+        <div class="animal-detalhes">
+            <img src="{{ animal.imagem.url }}" alt="Imagem de {{ animal.nome }}">
+
+            <div class="animal-info">
+                <p><strong>Espécie:</strong> {{ animal.especie }}</p>
+                <p><strong>Idade:</strong> {{ animal.idade }} anos</p>
+                <p><strong>Descrição:</strong> {{ animal.descricao }}</p>
+
+                <div style="margin-top: 25px;">
+                    <a href="{% url 'adotar' %}"><button class="btn-voltar">Voltar à lista</button></a>
+                    {% if user.is_authenticated %}
+                        <a href="{% url 'apadrinhar' animal.id %}"><button class="btn-verde">Apadrinhar</button></a>
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+    </main>
+
     <script>
         const toggleBtn = document.getElementById('darkModeToggle');
         const body = document.body;
 
-        // Verifica se o modo escuro estava ativado antes (localStorage)
-        if(localStorage.getItem('darkMode') === 'enabled') {
+        if (localStorage.getItem('darkMode') === 'enabled') {
             body.classList.add('dark-mode');
             toggleBtn.textContent = "Modo Claro";
         }
 
         toggleBtn.addEventListener('click', () => {
             body.classList.toggle('dark-mode');
-
-            if(body.classList.contains('dark-mode')) {
+            if (body.classList.contains('dark-mode')) {
                 toggleBtn.textContent = "Modo Claro";
                 localStorage.setItem('darkMode', 'enabled');
             } else {
@@ -71,4 +75,5 @@
             }
         });
     </script>
+</body>
 </html>

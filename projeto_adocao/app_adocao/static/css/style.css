@@ -1,7 +1,211 @@
+/* ==========================
+   BASE GLOBAL
+   ========================== */
+body {
+    font-family: Arial, sans-serif;
+    background-color: whitesmoke;
+    margin: 0;
+    color: #222;
+}
 
+h1 {
+    margin-left: 35px;
+    font-family: 'Trebuchet MS', sans-serif;
+    color: #1b5e20;
+}
+
+p {
+    text-align: justify;
+    margin: 0 35px 20px 35px;
+    font-size: large;
+    line-height: 1.6;
+}
+
+/* ==========================
+   CABEÇALHO
+   ========================== */
+.cabecalho {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 40px;
+    background-color: #daa520;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.404);
+    height: 150px;
+    gap: 16px;
+}
+
+.logo {
+    width: 120px;
+    height: auto;
+}
+
+nav, .home {
+    font-family: cursive;
+    display: flex;
+    gap: 75px;
+    text-align-last: right;
+    font-size: larger;
+    font-weight: bolder;
+    margin-right: 70px;
+}
+
+/* ==========================
+   LINKS
+   ========================== */
+a:link:not(.sign_up),
+a:visited:not(.sign_up) {
+    color: darkgreen;
+    text-decoration: none;
+}
+a:hover:not(.sign_up) {
+    color: white;
+    text-decoration: underline;
+}
+a:active:not(.sign_up) {
+    color: limegreen;
+    text-decoration: underline;
+}
+
+/* ==========================
+   BOTÕES
+   ========================== */
+button {
+    background-color: darkgreen;
+    color: white;
+    padding: 8px 20px;
+    text-align: center;
+    text-decoration: none;
+    font-size: medium;
+    margin: 5px 2px;
+    border-radius: 8px;
+    border: none;
+    cursor: pointer;
+    transition: 0.3s;
+}
+button:hover {
+    opacity: 0.9;
+}
+
+.btn-verde {
+    background-color: darkgreen;
+    color: white;
+}
+.btn-vermelho {
+    background-color: #b71c1c;
+    color: white;
+}
+.btn-voltar {
+    background-color: #555;
+    color: white;
+}
+
+/* ==========================
+   CAIXAS DE LOGIN / REGISTO
+   ========================== */
+.signInCaixa, .signUpCaixa {
+    background-color: white;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px black;
+    width: 500px;
+    margin: 50px auto;
+    padding: 20px;
+}
+
+/* ==========================
+   LISTA DE ANIMAIS
+   ========================== */
+.lista-animais {
+    display: flex;
+    flex-wrap: wrap;
+    list-style-type: none;
+    justify-content: center;
+    gap: 30px;
+}
+
+.caixa {
+    background-color: white;
+    border: 1px solid #000;
+    border-radius: 10px;
+    box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+    width: 240px;
+    text-align: center;
+    padding: 20px;
+    transition: transform 0.2s;
+}
+.caixa:hover {
+    transform: scale(1.03);
+}
+
+/* ==========================
+   PÁGINA DE APADRINHAR
+   ========================== */
+main {
+    max-width: 1100px;
+    margin: 50px auto;
+    padding: 20px;
+    background-color: white;
+    border-radius: 10px;
+    box-shadow: 0 0 15px rgba(0,0,0,0.1);
+}
+
+.animal-detalhes {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 40px;
+    align-items: flex-start;
+    margin-top: 30px;
+    padding: 20px;
+}
+
+.animal-detalhes img {
+    border-radius: 10px;
+    width: 400px;
+    max-width: 100%;
+    object-fit: cover;
+}
+
+.animal-info {
+    flex: 1;
+    max-width: 500px;
+}
+
+.animal-info p {
+    margin-bottom: 12px;
+}
+
+/* ==========================
+   MENSAGENS DE FEEDBACK
+   ========================== */
+.messages {
+    margin: 20px 35px;
+    padding: 10px 15px;
+    border-radius: 8px;
+}
+
+.messages .success {
+    background-color: #c8e6c9;
+    color: #1b5e20;
+}
+.messages .warning {
+    background-color: #fff3cd;
+    color: #856404;
+}
+.messages .error {
+    background-color: #f8d7da;
+    color: #721c24;
+}
+
+/* ==========================
+   MODO ESCURO
+   ========================== */
 body.dark-mode {
     background-color: #121212;
     color: #e0e0e0;
+}
+body.dark-mode main {
+    background-color: #1e1e1e;
 }
 body.dark-mode header.cabecalho {
     background-color: #1f1f1f;
@@ -15,73 +219,30 @@ body.dark-mode footer {
     background-color: #1f1f1f;
     color: #aaa;
 }
+
+/* Botão do modo escuro */
 #darkModeToggle {
     cursor: pointer;
     font-size: 16px;
-    padding: 8px 12px;
+    padding: 10px 18px;
     border: none;
-    border-radius: 5px;
+    border-radius: 50px;
     background-color: #444;
     color: white;
-    transition: background-color 0.3s;
-    margin-left: 20px;
+    transition: background-color 0.3s, transform 0.2s;
+    margin: 20px;
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
 }
 #darkModeToggle:hover {
     background-color: #666;
+    transform: scale(1.05);
 }
 
-
-.signInCaixa {
-    background-color: white;
-    border-radius: 10px;
-    box-shadow: 0 4px 8px black;
-    height: 375px;
-    width: 500px;
-    margin: auto;
-}
-
-.signUpCaixa {
-    background-color: white;
-    border-radius: 10px;
-    box-shadow: 0 4px 8px black;
-    height: auto;
-    width: 500px;
-    margin: auto;
-}
-
-.lista-animais {
-    display: flex;
-    flex-wrap: wrap;
-    list-style-type: none;
-}
-
-.caixa {
-    margin-left: 35px;
-    display: flex;
-    align-items: center;
-    text-align: center;
-    margin-bottom: 20px;
-    padding: 0 40px;
-    background-color: white;
-    border: 1px solid #000000;
-    height: auto;
-    width: 240px;
-    display: block;
-    list-style: none;
-}
-
-button {
-    background-color: darkgreen;
-    color: white;
-    padding: 5px 15px;
-    text-align: center;
-    text-decoration: none;
-    font-size: medium;
-    margin: 5px 2px;
-    border-radius: 8px;
-}
-
-
+/* ==========================
+   OUTROS
+   ========================== */
 iframe {
     height: 300px;
     width: 700px;
@@ -91,78 +252,6 @@ iframe {
     border-radius: 10px;
 }
 
-
-.cabecalho {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    padding: 0 40px;
-    background-color: #daa520;
-    border-radius: 10px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.404);
-    height: 150px;
-    gap: 16px;
-}
-
-
 label {
     font-size: larger;
 }
-
-
-p {
-    text-align: justify;
-    margin: 0 35px 20px 35px;
-    font-size: large;
-    line-height: 1.6;
-    margin-right: 35px;
-}
-
-
-h1 {
-    margin-left: 35px;
-    font-family: 'Trebuchet MS';
-}
-
-
-body {
-    font-family: Arial;
-    background-color: whitesmoke;
-}
-
-
-nav, .home {
-    font-family: cursive;
-    display: flex;
-    gap: 75px;
-    text-align-last: right;
-    font-size: larger;
-    font-weight: bolder;
-    margin-right: 70px;
-}
-
-
-.logo {
-    width: 120px;
-    height: auto;
-}
-
-
-a:link:not(.sign_up) {
-    color: darkgreen;
-    text-decoration: none;
-}
-a:visited:not(.sign_up) {
-    color:darkgreen;
-    text-decoration: none;
-}
-a:hover:not(.sign_up) {
-    color:white;
-    text-decoration: underline;
-}
-a:active:not(.sign_up) {
-    color: limegreen;
-    text-decoration: underline;
-}
-
-

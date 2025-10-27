@@ -10,7 +10,6 @@
 </head>
 
 <body>
-    <!-- Cabeçalho -->
     <header class="cabecalho">
         <div style="gap: 20px; display: flex; align-items: center;">
             <img src="{% static 'imagens/logo.png' %}" alt="Logo do Instituto Vida Animal" class="logo">
@@ -30,10 +29,8 @@
         </nav>
     </header>
 
-    <!-- Botão modo escuro -->
     <button id="darkModeToggle">Modo Escuro</button>
 
-    <!-- Conteúdo principal -->
     <main style="padding: 40px; text-align: center;">
         <h1 style="font-size: 36px; color: #2E8B57;">🎉 Parabéns, {{ user.username }}!</h1>
         <p style="font-size: 20px; margin-top: 20px;">
@@ -55,7 +52,6 @@
         </div>
     </main>
 
-    <!-- Script modo escuro -->
     <script>
         const toggleBtn = document.getElementById('darkModeToggle');
         const body = document.body;

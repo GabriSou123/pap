@@ -31,54 +31,53 @@
 
         <button id="darkModeToggle">Modo Escuro</button>
 
-        <main style="padding: 40px;">
+        <main>
             {% if messages %}
-                <div style="margin: 20px auto; max-width: 800px;">
+                <div class="messages">
                     {% for message in messages %}
-                        <div>
-                            {{ message }}
-                        </div>
+                        <div class="{{ message.tags }}">{{ message }}</div>
                     {% endfor %}
                 </div>
-                {% endif %}
+            {% endif %}
+        
             <h1>Apadrinhar {{ animal.nome }}</h1>
-
-            <div style="display: flex; gap: 40px; align-items: flex-start; margin-top: 30px;">
-                <img src="{{ animal.imagem.url }}" alt="Imagem de {{ animal.nome }}" width="400" style="border-radius: 10px;">
-
-                <div style="max-width: 500px;">
+        
+            <div class="animal-detalhes">
+                <img src="{{ animal.imagem.url }}" alt="{{ animal.nome }}">
+        
+                <div class="animal-info">
                     <p><strong>Espécie:</strong> {{ animal.get_especie_display }}</p>
                     <p><strong>Idade:</strong> {{ animal.idade }} anos</p>
                     <p><strong>Descrição:</strong> {{ animal.descricao }}</p>
-
-                    <hr style="margin: 20px 0;">
-
+        
+                    <hr>
+        
                     {% if not animal.padrinho %}
                         <form method="post">
                             {% csrf_token %}
                             <p>Deseja confirmar o apadrinhamento deste animal?</p>
-                            <button type="submit" style="padding: 10px 20px; font-size: 18px; background-color: darkgreen; color: white; border: none; border-radius: 5px; cursor: pointer;">
-                                Confirmar Apadrinhamento
-                            </button>
+                            <button type="submit" class="btn-verde">Confirmar Apadrinhamento</button>
                         </form>
-                        <a href="{% url 'adotar' %}"><button style="padding: 10px 20px; font-size: 18px; background-color: darkgreen; color: white; border: none; border-radius: 5px; cursor: pointer;">Voltar à lista</button></a>
-                        
-
+                        <a href="{% url 'adotar' %}">
+                            <button class="btn-voltar">Voltar à lista</button>
+                        </a>
+        
                     {% elif animal.padrinho == user %}
                         <p style="color: green; font-weight: bold;">É atualmente o padrinho/madrinha deste animal ❤️</p>
                         <form method="post">
                             {% csrf_token %}
-                            <button type="submit" name="cancelar" style="padding: 10px 20px; font-size: 18px; background-color: red; color: white; border: none; border-radius: 5px; cursor: pointer;">
-                                Cancelar Apadrinhamento
-                            </button>
+                            <button type="submit" name="cancelar" class="btn-vermelho">Cancelar Apadrinhamento</button>
                         </form>
-
+                        <a href="{% url 'adotar' %}"><button>Voltar à lista</button></a>
+        
                     {% else %}
                         <p style="color: red; font-weight: bold;">Este animal já foi apadrinhado por outro utilizador.</p>
+                        <a href="{% url 'adotar' %}"><button>Voltar à lista</button></a>
                     {% endif %}
                 </div>
             </div>
         </main>
+        
 
         <script>
             const toggleBtn = document.getElementById('darkModeToggle');
