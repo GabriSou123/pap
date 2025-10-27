@@ -39,14 +39,37 @@ def animaisadc(request, animal_id):
 def apadrinhar(request, animal_id):
     animal = get_object_or_404(Animal, id=animal_id)
 
-    animal.padrinho = request.user
-    animal.save()
+    if animal.padrinho and animal.padrinho != request.user:
+        messages.warning(request, f"O {animal.nome} já foi apadrinhado por outro utilizador.")
+        return render(request, 'site/apadrinhar.html', {'animal': animal})
+
+    if request.method == "POST" and "cancelar" in request.POST:
+        if animal.padrinho == request.user:
+            animal.padrinho = None
+            animal.save()
+            messages.success(request, f"Apadrinhamento de {animal.nome} cancelado.")
+        return render(request, 'site/apadrinhar.html', {'animal': animal})
+
+    if request.method == "POST" and not animal.padrinho:
+        animal.padrinho = request.user
+        animal.save()
+        messages.success(request, f"Parabéns! Agora é o padrinho/madrinha de {animal.nome}.")
+        return render(request, 'site/apadrinhar.html', {'animal': animal})
 
     return render(request, 'site/apadrinhar.html', {'animal': animal})
 
 
+@login_required
+def confirmacao_apadrinhamento(request, animal_id):
+    animal = get_object_or_404(Animal, id=animal_id)
+    return render(request, 'site/confirmacao_apadrinhamento.html', {'animal': animal})
+
+
 
 def sign_up(request):
+    storage = messages.get_messages(request)
+    storage.used = True
+
     if request.method == 'POST':
         form = SignUpForm(request.POST)
         if form.is_valid():
@@ -59,6 +82,7 @@ def sign_up(request):
         form = SignUpForm()
 
     return render(request, 'site/sign_up.html', {'form': form})
+
 
 
 def sign_in(request):

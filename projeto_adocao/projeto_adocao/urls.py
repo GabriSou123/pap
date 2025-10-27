@@ -15,8 +15,9 @@ urlpatterns = [
     path('sign_in/', views.sign_in, name='sign_in'),
     path('logout/', views.sign_out, name='logout'),
     path('apadrinhar/<int:animal_id>/', views.apadrinhar, name='apadrinhar'),
-
+    path('confirmacao/<int:animal_id>/', views.confirmacao_apadrinhamento, name='confirmacao_apadrinhamento'),
 ]
+
 
 if settings.DEBUG:
     urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

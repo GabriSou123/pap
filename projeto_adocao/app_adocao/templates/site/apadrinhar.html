@@ -1,18 +1,19 @@
-    <!DOCTYPE html>
-<html>
+<!DOCTYPE html>
+<html lang="pt">
     <head>
         {% load static %}
-        <link rel="stylesheet" href="{% static 'css/style.css' %}">
-        <title> Apadrinhar | Instituto Vida Animal </title>
-        <link rel="icon" href="{% static 'imagens/logo.png' %}" type="image/png">
+        <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Apadrinhar | Instituto Vida Animal</title>
+        <link rel="stylesheet" href="{% static 'css/style.css' %}">
+        <link rel="icon" href="{% static 'imagens/logo.png' %}" type="image/png">
     </head>
 
     <body>
         <header class="cabecalho">
             <div style="gap: 20px; display: flex; align-items: center;">
                 <img src="{% static 'imagens/logo.png' %}" alt="Logo do Instituto Vida Animal" class="logo">
-                <a class="home" style="font-size: 32px; font-family: cursive; font-weight: bolder;" href="/"> Instituto Vida Animal </a>
+                <a class="home" style="font-size: 32px; font-family: cursive; font-weight: bolder;" href="/">Instituto Vida Animal</a>
             </div>
 
             <nav>
@@ -25,41 +26,72 @@
                 {% else %}
                     <a style="font-size: 23px;" href="{% url 'sign_in' %}">Login</a>
                 {% endif %}
-                
             </nav>
         </header>
 
         <button id="darkModeToggle">Modo Escuro</button>
-        <br>
-        {% if user.is_authenticated %}
-            <h1>Apadrinhar</h1>
-            <p>Para apadrinhar o animal {{ animal.nome }} </p>
-            <div style="text-align: right; margin-right: 250px;">
-                <img src="{{ animal.imagem.url }}" alt="Imagem de {{ animal.nome }}" width="400">
+
+        <main style="padding: 40px;">
+            {% if messages %}
+                <div style="margin: 20px auto; max-width: 800px;">
+                    {% for message in messages %}
+                        <div>
+                            {{ message }}
+                        </div>
+                    {% endfor %}
+                </div>
+                {% endif %}
+            <h1>Apadrinhar {{ animal.nome }}</h1>
+
+            <div style="display: flex; gap: 40px; align-items: flex-start; margin-top: 30px;">
+                <img src="{{ animal.imagem.url }}" alt="Imagem de {{ animal.nome }}" width="400" style="border-radius: 10px;">
+
+                <div style="max-width: 500px;">
+                    <p><strong>Espécie:</strong> {{ animal.get_especie_display }}</p>
+                    <p><strong>Idade:</strong> {{ animal.idade }} anos</p>
+                    <p><strong>Descrição:</strong> {{ animal.descricao }}</p>
+
+                    <hr style="margin: 20px 0;">
+
+                    {% if not animal.padrinho %}
+                        <form method="post">
+                            {% csrf_token %}
+                            <p>Deseja confirmar o apadrinhamento deste animal?</p>
+                            <button type="submit" style="padding: 10px 20px; font-size: 18px; background-color: darkgreen; color: white; border: none; border-radius: 5px; cursor: pointer;">
+                                Confirmar Apadrinhamento
+                            </button>
+                        </form>
+                        <a href="{% url 'adotar' %}"><button style="padding: 10px 20px; font-size: 18px; background-color: darkgreen; color: white; border: none; border-radius: 5px; cursor: pointer;">Voltar à lista</button></a>
+                        
+
+                    {% elif animal.padrinho == user %}
+                        <p style="color: green; font-weight: bold;">É atualmente o padrinho/madrinha deste animal ❤️</p>
+                        <form method="post">
+                            {% csrf_token %}
+                            <button type="submit" name="cancelar" style="padding: 10px 20px; font-size: 18px; background-color: red; color: white; border: none; border-radius: 5px; cursor: pointer;">
+                                Cancelar Apadrinhamento
+                            </button>
+                        </form>
+
+                    {% else %}
+                        <p style="color: red; font-weight: bold;">Este animal já foi apadrinhado por outro utilizador.</p>
+                    {% endif %}
+                </div>
             </div>
-
-
-        {% else %}
-            <h1>Por favor faça login</h1>
-            <p>Para aceder a esta página, por favor faça <a class="sign_up" href="{% url 'sign_in' %}">login</a>.</p>
-        {% endif %}
-
-
+        </main>
 
         <script>
             const toggleBtn = document.getElementById('darkModeToggle');
             const body = document.body;
-    
-            // Verifica se o modo escuro estava ativado antes
-            if(localStorage.getItem('darkMode') === 'enabled') {
+
+            if (localStorage.getItem('darkMode') === 'enabled') {
                 body.classList.add('dark-mode');
                 toggleBtn.textContent = "Modo Claro";
             }
-    
+
             toggleBtn.addEventListener('click', () => {
                 body.classList.toggle('dark-mode');
-    
-                if(body.classList.contains('dark-mode')) {
+                if (body.classList.contains('dark-mode')) {
                     toggleBtn.textContent = "Modo Claro";
                     localStorage.setItem('darkMode', 'enabled');
                 } else {
