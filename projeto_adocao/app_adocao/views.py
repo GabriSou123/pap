@@ -33,8 +33,16 @@ def animaisadc(request, animal_id):
     animal = get_object_or_404(Animal, id=animal_id)
     return render(request, 'animais/animaisadc.html', {'animal': animal})
 
-def apadrinhar(request):
-    return render(request, 'site/apadrinhar.html')
+
+
+@login_required
+def apadrinhar(request, animal_id):
+    animal = get_object_or_404(Animal, id=animal_id)
+
+    animal.padrinho = request.user
+    animal.save()
+
+    return render(request, 'site/apadrinhar.html', {'animal': animal})
 
 
 
@@ -72,14 +80,6 @@ def sign_out(request):
 
 
 
-@login_required
-def apadrinhar_animal(request, animal_id):
-    animal = get_object_or_404(Animal, id=animal_id)
 
-    if animal.padrinho is not None:
-        return render(request, 'erro.html', {'mensagem': 'Este animal já foi apadrinhado.'})
 
-    animal.padrinho = request.user
-    animal.save()
-
-    return redirect('adotar')
+    

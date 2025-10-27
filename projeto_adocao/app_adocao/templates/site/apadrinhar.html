@@ -33,12 +33,18 @@
         <br>
         {% if user.is_authenticated %}
             <h1>Apadrinhar</h1>
-            <p>Para apadrinhar um animal </p>
-            <p></p>
+            <p>Para apadrinhar o animal {{ animal.nome }} </p>
+            <div style="text-align: right; margin-right: 250px;">
+                <img src="{{ animal.imagem.url }}" alt="Imagem de {{ animal.nome }}" width="400">
+            </div>
+
+
         {% else %}
             <h1>Por favor faça login</h1>
             <p>Para aceder a esta página, por favor faça <a class="sign_up" href="{% url 'sign_in' %}">login</a>.</p>
         {% endif %}
+
+
 
         <script>
             const toggleBtn = document.getElementById('darkModeToggle');

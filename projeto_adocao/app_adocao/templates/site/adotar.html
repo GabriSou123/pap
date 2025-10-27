@@ -25,11 +25,9 @@
                 {% else %}
                     <a style="font-size: 23px;" href="{% url 'sign_in' %}">Login</a>
                 {% endif %}
-                
             </nav>
         </header>
 
-        <button id="darkModeToggle">Modo Escuro</button>
         <br>
         <h1>Animais para adoção</h1>
         <form method="get">
@@ -54,9 +52,9 @@
                         {% endif %}
                         <h2> Nome: {{ animal.nome }} </h2>
                         <h2> Idade: {{ animal.idade }} anos</h2>
-                            <a href="{% url 'animais_detalhe' animal.id %}"><button> Ver detalhes </button></a>
+                        <a href="{% url 'animais_detalhe' animal.id %}"><button> Ver detalhes </button></a>
                         {% if user.is_authenticated %}
-                            <a href="{% url 'apadrinhar' %}"><button>Apadrinhar</button></a>
+                            <a href="{% url 'apadrinhar' animal.id %}"><button>Apadrinhar</button></a>
                         {% endif %}
                     </div>
                 </li>
@@ -74,33 +72,9 @@
             &copy; 2025 Instituto Vida Animal. Todos os direitos reservados.
         </p>
     </footer>
+</html>
 
 
-
-
-
-
-    <!--{% for animal in animais %}
-    <div class="animal-card">
-      <h3>{{ animal.nome }}</h3>
-      <p>Espécie: {{ animal.especie }}</p>
-      <p>Idade: {{ animal.idade }}</p>
-      {% if animal.foto %}
-        <img src="{{ animal.foto.url }}" alt="{{ animal.nome }}">
-      {% endif %}
-      {% if animal.padrinho %}
-        <p><strong>Já foi apadrinhado por {{ animal.padrinho.username }}</strong></p>
-      {% else %}
-        {% if user.is_authenticated %}
-          <a href="{% url 'apadrinhar_animal' animal.id %}" class="btn btn-success">Apadrinhar</a>
-        {% else %}
-          <p><a href="{% url 'login' %}">Inicia sessão</a> para apadrinhar</p>
-        {% endif %}
-      {% endif %}
-    </div>
-  {% endfor %}
-  
--->
 
 
 
