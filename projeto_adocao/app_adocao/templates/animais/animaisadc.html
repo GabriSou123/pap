@@ -10,30 +10,26 @@
 </head>
 
 <body>
-    <header class="cabecalho">
-        <div style="gap: 20px; display: flex; align-items: center;">
+    <header class="cabecalho">  
+        <div style="display: flex; align-items: center; gap: 15px;">
             <img src="{% static 'imagens/logo.png' %}" alt="Logo do Instituto Vida Animal" class="logo">
-            <a class="home" style="font-size: 32px;" href="/">Instituto Vida Animal</a>
+            <a class="home" style="font-size: 26px; font-weight: bold;" href="/">Instituto Vida Animal</a>
         </div>
 
         <nav>
-            <a style="font-size: 23px;" href="../sobreNos" class="lista">Sobre Nós</a>
-            <a style="font-size: 23px;" href="../adotar">Adotar</a>
-            <a style="font-size: 23px;" href="../contactos">Contactos</a>
+            <a style="font-size: 23px;" href="../../sobreNos" class="lista">Sobre Nós</a>
+            <a style="font-size: 23px;" href="../../adotar">Adotar</a>
+            <a style="font-size: 23px;" href="../../contactos">Contactos</a>
             {% if user.is_authenticated %}
                 <span style="font-size: 20px; margin-right: 10px;">Olá, {{ user.username }}!</span>
                 <a style="font-size: 23px;" href="{% url 'logout' %}">Logout</a>
             {% else %}
                 <a style="font-size: 23px;" href="{% url 'sign_in' %}">Login</a>
             {% endif %}
-            
         </nav>
     </header>
-
-    <!-- BOTÃO DARK MODE -->
     <button id="darkModeToggle">Modo Escuro</button>
 
-    <!-- CONTEÚDO PRINCIPAL -->
     <main>
         <h1>{{ animal.nome }}</h1>
 
@@ -45,7 +41,7 @@
                 <p><strong>Idade:</strong> {{ animal.idade }} anos</p>
                 <p><strong>Descrição:</strong> {{ animal.descricao }}</p>
 
-                <div style="margin-top: 25px;">
+                <div style="margin-top: 25px; margin-left: 35px;">
                     <a href="{% url 'adotar' %}"><button class="btn-voltar">Voltar à lista</button></a>
                     {% if user.is_authenticated %}
                         <a href="{% url 'apadrinhar' animal.id %}"><button class="btn-verde">Apadrinhar</button></a>

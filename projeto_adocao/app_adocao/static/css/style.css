@@ -34,6 +34,12 @@ p {
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.404);
     height: 150px;
     gap: 16px;
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 1000;
+    margin: 0;
 }
 
 .logo {
@@ -49,6 +55,11 @@ nav, .home {
     font-size: larger;
     font-weight: bolder;
     margin-right: 70px;
+}
+
+
+body {
+    padding-top: 160px;
 }
 
 /* ==========================
@@ -211,7 +222,6 @@ body.dark-mode header.cabecalho {
     background-color: #1f1f1f;
 }
 body.dark-mode nav a,
-body.dark-mode .home,
 body.dark-mode span {
     color: #e0e0e0;
 }
@@ -220,7 +230,7 @@ body.dark-mode footer {
     color: #aaa;
 }
 
-/* Botão do modo escuro */
+
 #darkModeToggle {
     cursor: pointer;
     font-size: 16px;
@@ -234,6 +244,7 @@ body.dark-mode footer {
     position: fixed;
     bottom: 20px;
     right: 20px;
+    z-index: 1000;
 }
 #darkModeToggle:hover {
     background-color: #666;
@@ -254,4 +265,78 @@ iframe {
 
 label {
     font-size: larger;
+}
+
+/* ==========================
+   GALERIA DE IMAGENS
+   ========================== */
+.galeria {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 20px;
+    padding: 20px;
+}
+
+.galeria img {
+    width: calc(25% - 20px);
+    height: auto;
+    object-fit: cover;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease;
+}
+
+.galeria img:hover {
+    transform: scale(1.05);
+}
+
+@media (max-width: 1200px) {
+    .galeria img {
+        width: calc(33.33% - 20px);
+    }
+}
+
+@media (max-width: 800px) {
+    .galeria img {
+        width: calc(50% - 20px);
+    }
+}
+
+@media (max-width: 500px) {
+    .galeria img {
+        width: 100%;
+    }
+}
+
+
+main {
+    max-width: 1100px;
+    margin: 50px auto;
+    padding: 20px;
+    background-color: white;
+    border-radius: 10px;
+    box-shadow: 0 0 15px rgba(0,0,0,0.1);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.botao-adotar {
+    background-color: darkgreen;
+    color: white;
+    padding: 15px 30px;
+    text-align: center;
+    font-size: 18px;
+    border-radius: 8px;
+    border: none;
+    cursor: pointer;
+    transition: 0.3s;
+    margin-top: 20px;
+    width: auto;
+}
+
+.botao-adotar:hover {
+    opacity: 0.9;
 }
