@@ -1,0 +1,33 @@
+/* ==========================
+   LISTA DE ANIMAIS
+   ========================== */
+.lista-animais {
+    display: flex;
+    flex-wrap: wrap;
+    list-style-type: none;
+    justify-content: center;
+    gap: 30px;
+}
+
+.caixa {
+    background-color: white;
+    border: 1px solid #000;
+    border-radius: 10px;
+    box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+    width: 240px;
+    text-align: center;
+    padding: 20px;
+    transition: transform 0.2s;
+}
+.caixa:hover {
+    transform: scale(1.03);
+}
+
+/* ==========================
+   REMOVER TRANSIÇÕES ENTRE MODO CLARO E ESCURO
+   ========================== */
+body,
+body * {
+    transition: none !important;
+}
+

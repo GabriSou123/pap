@@ -6,6 +6,8 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title>Apadrinhar | Instituto Vida Animal</title>
         <link rel="stylesheet" href="{% static 'css/style.css' %}">
+        <link rel="stylesheet" href="{% static 'css/animais.css' %}">
+        <link rel="stylesheet" href="{% static 'css/modoEscuro.css' %}">
         <link rel="icon" href="{% static 'imagens/logo.png' %}" type="image/png">
     </head>
 
@@ -63,7 +65,7 @@
                         </a>
         
                     {% elif animal.padrinho == user %}
-                        <p style="color: green; font-weight: bold;">É atualmente o padrinho/madrinha deste animal ❤️</p>
+                        <p style="color: green; font-weight: bold;">É atualmente o padrinho/madrinha deste animal</p>
                         <form method="post">
                             {% csrf_token %}
                             <button type="submit" name="cancelar" class="btn-vermelho">Cancelar Apadrinhamento</button>

@@ -1,75 +1,77 @@
 <!DOCTYPE html>
 <html lang="pt">
-<head>
-    {% load static %}
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>{{ animal.nome }} | Instituto Vida Animal</title>
-    <link rel="icon" href="{% static 'imagens/logo.png' %}" type="image/png">
-    <link rel="stylesheet" href="{% static 'css/style.css' %}">
-</head>
+    <head>
+        {% load static %}
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>{{ animal.nome }} | Instituto Vida Animal</title>
+        <link rel="icon" href="{% static 'imagens/logo.png' %}" type="image/png">
+        <link rel="stylesheet" href="{% static 'css/style.css' %}">
+        <link rel="stylesheet" href="{% static 'css/animais.css' %}">
+        <link rel="stylesheet" href="{% static 'css/modoEscuro.css' %}">
+    </head>
 
-<body>
-    <header class="cabecalho">  
-        <div style="display: flex; align-items: center; gap: 15px;">
-            <img src="{% static 'imagens/logo.png' %}" alt="Logo do Instituto Vida Animal" class="logo">
-            <a class="home" style="font-size: 26px; font-weight: bold;" href="/">Instituto Vida Animal</a>
-        </div>
-
-        <nav>
-            <a style="font-size: 23px;" href="../../sobreNos" class="lista">Sobre Nós</a>
-            <a style="font-size: 23px;" href="../../adotar">Adotar</a>
-            <a style="font-size: 23px;" href="../../contactos">Contactos</a>
-            {% if user.is_authenticated %}
-                <span style="font-size: 20px; margin-right: 10px;">Olá, {{ user.username }}!</span>
-                <a style="font-size: 23px;" href="{% url 'logout' %}">Logout</a>
-            {% else %}
-                <a style="font-size: 23px;" href="{% url 'sign_in' %}">Login</a>
-            {% endif %}
-        </nav>
-    </header>
-    <button id="darkModeToggle">Modo Escuro</button>
-
-    <main>
-        <h1>{{ animal.nome }}</h1>
-
-        <div class="animal-detalhes">
-            <img src="{{ animal.imagem.url }}" alt="Imagem de {{ animal.nome }}">
-
-            <div class="animal-info">
-                <p><strong>Espécie:</strong> {{ animal.especie }}</p>
-                <p><strong>Idade:</strong> {{ animal.idade }} anos</p>
-                <p><strong>Descrição:</strong> {{ animal.descricao }}</p>
-
-                <div style="margin-top: 25px; margin-left: 35px;">
-                    <a href="{% url 'adotar' %}"><button class="btn-voltar">Voltar à lista</button></a>
-                    {% if user.is_authenticated %}
-                        <a href="{% url 'apadrinhar' animal.id %}"><button class="btn-verde">Apadrinhar</button></a>
-                    {% endif %}
-                </div>
+    <body>
+        <header class="cabecalho">  
+            <div style="display: flex; align-items: center; gap: 15px;">
+                <img src="{% static 'imagens/logo.png' %}" alt="Logo do Instituto Vida Animal" class="logo">
+                <a class="home" style="font-size: 26px; font-weight: bold;" href="/">Instituto Vida Animal</a>
             </div>
-        </div>
-    </main>
 
-    <script>
-        const toggleBtn = document.getElementById('darkModeToggle');
-        const body = document.body;
+            <nav>
+                <a style="font-size: 23px;" href="../../sobreNos" class="lista">Sobre Nós</a>
+                <a style="font-size: 23px;" href="../../adotar">Adotar</a>
+                <a style="font-size: 23px;" href="../../contactos">Contactos</a>
+                {% if user.is_authenticated %}
+                    <span style="font-size: 20px; margin-right: 10px;">Olá, {{ user.username }}!</span>
+                    <a style="font-size: 23px;" href="{% url 'logout' %}">Logout</a>
+                {% else %}
+                    <a style="font-size: 23px;" href="{% url 'sign_in' %}">Login</a>
+                {% endif %}
+            </nav>
+        </header>
+        <button id="darkModeToggle">Modo Escuro</button>
 
-        if (localStorage.getItem('darkMode') === 'enabled') {
-            body.classList.add('dark-mode');
-            toggleBtn.textContent = "Modo Claro";
-        }
+        <main>
+            <h1>{{ animal.nome }}</h1>
 
-        toggleBtn.addEventListener('click', () => {
-            body.classList.toggle('dark-mode');
-            if (body.classList.contains('dark-mode')) {
+            <div class="animal-detalhes">
+                <img src="{{ animal.imagem.url }}" alt="Imagem de {{ animal.nome }}">
+            
+                <div class="animal-info">
+                    <p><strong>Espécie:</strong> {{ animal.especie }}</p>
+                    <p><strong>Idade:</strong> {{ animal.idade }} anos</p>
+                    <p><strong>Descrição:</strong> {{ animal.descricao }}</p>
+            
+                    <div style="margin-top: 25px; margin-left: 35px;">
+                        <a href="{% url 'adotar' %}"><button class="btn-voltar">Voltar à lista</button></a>
+                        {% if user.is_authenticated %}
+                            <a href="{% url 'apadrinhar' animal.id %}"><button class="btn-verde">Apadrinhar</button></a>
+                        {% endif %}
+                    </div>
+                </div>
+            </div>        
+        </main>
+
+        <script>
+            const toggleBtn = document.getElementById('darkModeToggle');
+            const body = document.body;
+
+            if (localStorage.getItem('darkMode') === 'enabled') {
+                body.classList.add('dark-mode');
                 toggleBtn.textContent = "Modo Claro";
-                localStorage.setItem('darkMode', 'enabled');
-            } else {
-                toggleBtn.textContent = "Modo Escuro";
-                localStorage.setItem('darkMode', 'disabled');
             }
-        });
-    </script>
-</body>
+
+            toggleBtn.addEventListener('click', () => {
+                body.classList.toggle('dark-mode');
+                if (body.classList.contains('dark-mode')) {
+                    toggleBtn.textContent = "Modo Claro";
+                    localStorage.setItem('darkMode', 'enabled');
+                } else {
+                    toggleBtn.textContent = "Modo Escuro";
+                    localStorage.setItem('darkMode', 'disabled');
+                }
+            });
+        </script>
+    </body>
 </html>
