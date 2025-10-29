@@ -1,85 +1,87 @@
 <!DOCTYPE html>
 <html lang="pt">
-<head>
-    {% load static %}
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Instituto Vida Animal</title>
-    <link rel="icon" href="{% static 'imagens/logo.png' %}" type="image/png">
-    <link rel="stylesheet" href="{% static 'css/style.css' %}">
-</head>
+    <head>
+        {% load static %}
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Instituto Vida Animal</title>
+        <link rel="icon" href="{% static 'imagens/logo.png' %}" type="image/png">
+        <link rel="stylesheet" href="{% static 'css/style.css' %}">
+    </head>
 
-<body>
-    <header class="cabecalho">
-        <div style="gap: 20px; display: flex; align-items: center;">
-            <img src="{% static 'imagens/logo.png' %}" alt="Logo do Instituto Vida Animal" class="logo">
-            <a class="home" style="font-size: 32px; font-family: cursive; font-weight: bolder;" href="/"> Instituto Vida Animal </a>
-        </div>
+    <body>
+        <header class="cabecalho">
+            <div style="gap: 20px; display: flex; align-items: center;">
+                <img src="{% static 'imagens/logo.png' %}" alt="Logo do Instituto Vida Animal" class="logo">
+                <a class="home" style="font-size: 32px; font-family: cursive; font-weight: bolder;" href="/"> Instituto Vida Animal </a>
+            </div>
 
-        <nav>
-            <a style="font-size: 23px;" href="../sobreNos">Sobre Nós</a>
-            <a style="font-size: 23px;" href="../adotar">Adotar</a>
-            <a style="font-size: 23px;" href="../contactos">Contactos</a>
-            {% if user.is_authenticated %}
-                <span style="font-size: 20px; margin-right: 10px;">Olá, {{ user.username }}!</span>
-                <a style="font-size: 23px;" href="{% url 'logout' %}">Logout</a>
-            {% else %}
-                <a style="font-size: 23px;" href="{% url 'sign_in' %}">Login</a>
-            {% endif %}
-        </nav>
-    </header>
+            <nav>
+                <a style="font-size: 23px;" href="../sobreNos">Sobre Nós</a>
+                <a style="font-size: 23px;" href="../adotar">Adotar</a>
+                <a style="font-size: 23px;" href="../contactos">Contactos</a>
+                {% if user.is_authenticated %}
+                    <span style="font-size: 20px; margin-right: 10px;">Olá, {{ user.username }}!</span>
+                    <a style="font-size: 23px;" href="{% url 'logout' %}">Logout</a>
+                {% else %}
+                    <a style="font-size: 23px;" href="{% url 'sign_in' %}">Login</a>
+                {% endif %}
+            </nav>
+        </header>
 
-    <main>
-        <button id="darkModeToggle">Modo Escuro</button> 
+        <main>
+            <button id="darkModeToggle">Modo Escuro</button> 
 
-        <h1>Bem-vindo ao Instituto Vida Animal</h1> 
-        <p class="intro">
-            O <strong>Instituto Vida Animal</strong> é um espaço dedicado à proteção e adoção responsável de cães e gatos.  
-            Aqui, cada patinha conta uma história de esperança.  
-            Ajuda-nos a dar um novo começo a quem mais precisa. 
-        </p>
+            <h1>Bem-vindo ao Instituto Vida Animal</h1> 
+            <p class="intro">
+                O <strong>Instituto Vida Animal</strong> é um espaço dedicado à proteção e adoção responsável de cães e gatos.  
+                Aqui, cada patinha conta uma história de esperança.  
+                Ajuda-nos a dar um novo começo a quem mais precisa. 
+            </p>
 
-        <button class="botao-adotar" onclick="window.location.href='../adotar'">
-            Quero Adotar um Amigo 
-        </button>
+            <div style="text-align: center;">
+                <button class="botao-adotar" onclick="window.location.href='../adotar'">
+                    Quero Adotar um Amigo 
+                </button>
+            </div>
 
-        <div class="galeria">
-            <img src="{% static 'imagens/cao/cao1.jpg' %}" alt="Cão para adoção">
-            <img src="{% static 'imagens/cao/cao2.jpg' %}" alt="Cão para adoção">
-            <img src="{% static 'imagens/gato/gato7.jpg' %}" alt="Gato para adoção">
-            <img src="{% static 'imagens/cao/cao3.jpg' %}" alt="Cão para adoção">
-            <img src="{% static 'imagens/gato/gato1.jpg' %}" alt="Gato para adoção">
-            <img src="{% static 'imagens/cao/cao4.jpg' %}" alt="Cão para adoção">
-            <img src="{% static 'imagens/gato/gato4.jpg' %}" alt="Gato para adoção">
-        </div>
-    </main>
+            <div class="galeria">
+                <img src="{% static 'imagens/cao/cao1.jpg' %}" alt="Cão para adoção">
+                <img src="{% static 'imagens/cao/cao2.jpg' %}" alt="Cão para adoção">
+                <img src="{% static 'imagens/gato/gato7.jpg' %}" alt="Gato para adoção">
+                <img src="{% static 'imagens/cao/cao3.jpg' %}" alt="Cão para adoção">
+                <img src="{% static 'imagens/gato/gato1.jpg' %}" alt="Gato para adoção">
+                <img src="{% static 'imagens/cao/cao4.jpg' %}" alt="Cão para adoção">
+                <img src="{% static 'imagens/gato/gato4.jpg' %}" alt="Gato para adoção">
+            </div>
+        </main>
 
 
-    <footer>
-        <hr>
-        <p>&copy; 2025 Instituto Vida Animal. Todos os direitos reservados.</p>
-    </footer>
+        <footer>
+            <hr>
+            <p>&copy; 2025 Instituto Vida Animal. Todos os direitos reservados.</p>
+        </footer>
 
-    <script>
-        const toggleBtn = document.getElementById('darkModeToggle');
-        const body = document.body;
+        <script>
+            const toggleBtn = document.getElementById('darkModeToggle');
+            const body = document.body;
 
-        if(localStorage.getItem('darkMode') === 'enabled') {
-            body.classList.add('dark-mode');
-            toggleBtn.textContent = "Modo Claro";
-        }
-
-        toggleBtn.addEventListener('click', () => {
-            body.classList.toggle('dark-mode');
-
-            if(body.classList.contains('dark-mode')) {
+            if(localStorage.getItem('darkMode') === 'enabled') {
+                body.classList.add('dark-mode');
                 toggleBtn.textContent = "Modo Claro";
-                localStorage.setItem('darkMode', 'enabled');
-            } else {
-                toggleBtn.textContent = "Modo Escuro";
-                localStorage.setItem('darkMode', 'disabled');
             }
-        });
-    </script>
-</body>
+
+            toggleBtn.addEventListener('click', () => {
+                body.classList.toggle('dark-mode');
+
+                if(body.classList.contains('dark-mode')) {
+                    toggleBtn.textContent = "Modo Claro";
+                    localStorage.setItem('darkMode', 'enabled');
+                } else {
+                    toggleBtn.textContent = "Modo Escuro";
+                    localStorage.setItem('darkMode', 'disabled');
+                }
+            });
+        </script>
+    </body>
 </html>
