@@ -1,7 +1,7 @@
 /* ==========================
    BASE GLOBAL
    ========================== */
-body {
+   body {
     font-family: Arial, sans-serif;
     background-color: whitesmoke;
     margin: 0;
@@ -57,7 +57,6 @@ nav, .home {
     margin-right: 70px;
 }
 
-
 body {
     padding-top: 160px;
 }
@@ -112,6 +111,7 @@ button:hover {
     color: white;
 }
 
+
 /* ==========================
    CAIXAS DE LOGIN / REGISTO
    ========================== */
@@ -161,33 +161,8 @@ main {
     box-shadow: 0 0 15px rgba(0,0,0,0.1);
 }
 
-.animal-detalhes {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 40px;
-    align-items: flex-start;
-    margin-top: 30px;
-    padding: 20px;
-}
-
-.animal-detalhes img {
-    border-radius: 10px;
-    width: 400px;
-    max-width: 100%;
-    object-fit: cover;
-}
-
-.animal-info {
-    flex: 1;
-    max-width: 500px;
-}
-
-.animal-info p {
-    margin-bottom: 12px;
-}
-
 /* ==========================
-   MENSAGENS DE FEEDBACK
+   MENSAGENS DE ERRO OU SUCESSO
    ========================== */
 .messages {
     margin: 20px 35px;
@@ -229,8 +204,48 @@ body.dark-mode footer {
     background-color: #1f1f1f;
     color: #aaa;
 }
+body.dark-mode .caixa {
+    background-color: #1e1e1e;
+    border-color: #444;
+    box-shadow: 0 2px 6px rgba(255,255,255,0.1);
+    color: #f5f5f5;
+}
+body.dark-mode button {
+    background-color: #2e7d32;
+    color: white;
+}
+body.dark-mode button:hover {
+    background-color: #388e3c;
+}
+body.dark-mode .signInCaixa,
+body.dark-mode .signUpCaixa {
+    background-color: #1e1e1e;
+    color: #f0f0f0;
+    box-shadow: 0 4px 8px rgba(255,255,255,0.1);
+    border: 1px solid #444;
+}
+body.dark-mode input {
+    background-color: #2a2a2a;
+    color: #f5f5f5;
+    border: 1px solid #555;
+    border-radius: 6px;
+    padding: 6px;
+}
+body.dark-mode input:focus {
+    outline: none;
+    border-color: #76ff03;
+    box-shadow: 0 0 5px #76ff03;
+}
+body.dark-mode .sign_up {
+    color: #81c784;
+}
+body.dark-mode .sign_up:hover {
+    color: #b9f6ca;
+}
 
-
+/* ==========================
+   BOTÃO DO MODO ESCURO
+   ========================== */
 #darkModeToggle {
     cursor: pointer;
     font-size: 16px;
@@ -252,19 +267,11 @@ body.dark-mode footer {
 }
 
 /* ==========================
-   OUTROS
+   REMOVER TRANSIÇÕES ENTRE MODO CLARO E ESCURO
    ========================== */
-iframe {
-    height: 300px;
-    width: 700px;
-    display: block;
-    margin: 20px auto;
-    border: 2px solid #000000;
-    border-radius: 10px;
-}
-
-label {
-    font-size: larger;
+body,
+body * {
+    transition: none !important;
 }
 
 /* ==========================
@@ -291,6 +298,9 @@ label {
     transform: scale(1.05);
 }
 
+/* ==========================
+   MEDIA QUERIES
+   ========================== */
 @media (max-width: 1200px) {
     .galeria img {
         width: calc(33.33% - 20px);
@@ -307,36 +317,4 @@ label {
     .galeria img {
         width: 100%;
     }
-}
-
-
-main {
-    max-width: 1100px;
-    margin: 50px auto;
-    padding: 20px;
-    background-color: white;
-    border-radius: 10px;
-    box-shadow: 0 0 15px rgba(0,0,0,0.1);
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-}
-
-.botao-adotar {
-    background-color: darkgreen;
-    color: white;
-    padding: 15px 30px;
-    text-align: center;
-    font-size: 18px;
-    border-radius: 8px;
-    border: none;
-    cursor: pointer;
-    transition: 0.3s;
-    margin-top: 20px;
-    width: auto;
-}
-
-.botao-adotar:hover {
-    opacity: 0.9;
 }

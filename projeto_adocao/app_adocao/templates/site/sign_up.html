@@ -78,7 +78,6 @@
             const toggleBtn = document.getElementById('darkModeToggle');
             const body = document.body;
     
-            // Verifica se o modo escuro estava ativado antes (localStorage)
             if(localStorage.getItem('darkMode') === 'enabled') {
                 body.classList.add('dark-mode');
                 toggleBtn.textContent = "Modo Claro";

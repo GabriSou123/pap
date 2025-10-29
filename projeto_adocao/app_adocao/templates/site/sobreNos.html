@@ -9,6 +9,7 @@
     </head>
 
     <body>
+        <!-- Cabeçalho -->
         <header class="cabecalho">
             <div style="gap: 20px; display: flex; align-items: center;">
                 <img src="{% static 'imagens/logo.png' %}" alt="Logo do Instituto Vida Animal" class="logo">
@@ -27,50 +28,54 @@
                 {% endif %}
             </nav>
         </header>
-
         <button id="darkModeToggle">Modo Escuro</button>
-        <br>
-        <h1>A nossa história</h1>
-        <p>
-            O Instituto Vida Animal é uma organização dedicada à proteção e bem-estar dos animais.
-            Fundado em 2005, o instituto tem como missão resgatar, cuidar e encontrar lares amorosos para animais abandonados ou em situação de risco. 
-            Com uma equipe de voluntários apaixonados e profissionais experientes, o Instituto Vida Animal oferece serviços de adoção, cuidados veterinários, programas de educação comunitária e campanhas de conscientização sobre a importância do respeito aos direitos dos animais. 
-            Acreditamos que todos os animais merecem uma vida digna e feliz, e trabalhamos incansavelmente para garantir que cada um deles receba o amor e a atenção que merece.
-        </p>
-        <p>
-            Além disso, o Instituto Vida Animal colabora com outras organizações e autoridades locais para promover políticas públicas que favoreçam a proteção animal. 
-            Nosso compromisso é criar um mundo onde humanos e animais possam coexistir em harmonia, respeitando as necessidades e direitos de cada ser vivo. 
-            Junte-se a nós nessa missão, seja como voluntário, doador ou adotante, e faça a diferença na vida dos animais que tanto precisam de nossa ajuda.
-        </p>        
-    </body>
-    
-    <br><br>
-    <footer>
-        <hr>
-        <p>
-            &copy; 2025 Instituto Vida Animal. Todos os direitos reservados.
-        </p>
-    </footer>
-    <script>
-        const toggleBtn = document.getElementById('darkModeToggle');
-        const body = document.body;
 
-        // Verifica se o modo escuro estava ativado antes (localStorage)
-        if(localStorage.getItem('darkMode') === 'enabled') {
-            body.classList.add('dark-mode');
-            toggleBtn.textContent = "Modo Claro";
-        }
+        <main>
+            <h1>A nossa história</h1>
 
-        toggleBtn.addEventListener('click', () => {
-            body.classList.toggle('dark-mode');
+            <img src="{% static 'imagens/edificio.png' %}" alt="Nosso trabalho" style="width: 1000px; height: 250px; border-radius: 10px; box-shadow: 0 4px 8px rgba(0,0,0,0.3); margin-top: 10px;">
+            <br>
+            <p>
+                O Instituto Vida Animal é uma organização dedicada à proteção e bem-estar dos animais.
+                Fundado em 2005, o instituto tem como missão resgatar, cuidar e encontrar lares amorosos para animais abandonados ou em situação de risco.
+                Com uma equipe de voluntários apaixonados e profissionais experientes, o Instituto Vida Animal oferece serviços de adoção, cuidados veterinários, programas de educação comunitária e campanhas de conscientização sobre a importância do respeito aos direitos dos animais.
+                Acreditamos que todos os animais merecem uma vida digna e feliz, e trabalhamos incansavelmente para garantir que cada um deles receba o amor e a atenção que merece.
+            </p>
 
-            if(body.classList.contains('dark-mode')) {
+            <p>
+                Além disso, o Instituto Vida Animal colabora com outras organizações e autoridades locais para promover políticas públicas que favoreçam a proteção animal.
+                Nosso compromisso é criar um mundo onde humanos e animais possam coexistir em harmonia, respeitando as necessidades e direitos de cada ser vivo.
+                Junte-se a nós nessa missão, seja como voluntário, doador ou adotante, e faça a diferença na vida dos animais que tanto precisam de nossa ajuda.
+            </p>
+        </main>
+
+        <footer>
+            <hr>
+            <p>
+                &copy; 2025 Instituto Vida Animal. Todos os direitos reservados.
+            </p>
+        </footer>
+
+        <script>
+            const toggleBtn = document.getElementById('darkModeToggle');
+            const body = document.body;
+
+            if(localStorage.getItem('darkMode') === 'enabled') {
+                body.classList.add('dark-mode');
                 toggleBtn.textContent = "Modo Claro";
-                localStorage.setItem('darkMode', 'enabled');
-            } else {
-                toggleBtn.textContent = "Modo Escuro";
-                localStorage.setItem('darkMode', 'disabled');
             }
-        });
-    </script>
+
+            toggleBtn.addEventListener('click', () => {
+                body.classList.toggle('dark-mode');
+
+                if(body.classList.contains('dark-mode')) {
+                    toggleBtn.textContent = "Modo Claro";
+                    localStorage.setItem('darkMode', 'enabled');
+                } else {
+                    toggleBtn.textContent = "Modo Escuro";
+                    localStorage.setItem('darkMode', 'disabled');
+                }
+            });
+        </script>
+    </body>
 </html>
