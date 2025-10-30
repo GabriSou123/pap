@@ -6,6 +6,10 @@ class SignUpForm(UserCreationForm):
     email = forms.EmailField(required=True, widget=forms.EmailInput(attrs={
         'style': 'margin-left: 30px; height: 20px; width: 400px;',
     }))
+    
+    aceitar_termos = forms.BooleanField(required=True, label="Aceito os Termos e Condições", widget=forms.CheckboxInput(attrs={
+        'style': 'margin-left: 30px;',
+    }))
 
     class Meta:
         model = User
@@ -24,4 +28,3 @@ class SignUpForm(UserCreationForm):
         self.fields['password2'].widget.attrs.update({
             'style': 'margin-left: 30px; height: 20px; width: 400px;',
         })
-

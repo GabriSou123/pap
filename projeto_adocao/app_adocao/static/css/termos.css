@@ -1,0 +1,151 @@
+/* ===============================
+   ESTILO GERAL – Termos e Condições
+   =============================== */
+
+:root {
+    --cor-primaria: #2e7d32;
+    --cor-secundaria: #a5d6a7;
+    --cor-fundo: #f9f9f9;
+    --cor-texto: #333;
+    --cor-titulo: #1b5e20;
+    --cor-borda: #ddd;
+    --cor-link: #2e7d32;
+    --cor-link-hover: #1b5e20;
+}
+
+/* ===== Reset simples ===== */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: "Roboto", Arial, sans-serif;
+    line-height: 1.6;
+    background-color: var(--cor-fundo);
+    color: var(--cor-texto);
+    padding: 2rem 1rem;
+}
+
+/* ===== Cabeçalho ===== */
+header {
+    text-align: center;
+    border-bottom: 3px solid var(--cor-primaria);
+    padding-bottom: 1rem;
+    margin-bottom: 2rem;
+}
+
+header h1 {
+    color: var(--cor-titulo);
+    font-size: 2.2rem;
+    margin-bottom: 0.5rem;
+}
+
+header .data-atualizacao {
+    font-size: 0.95rem;
+    color: #555;
+}
+
+/* ===== Seções ===== */
+main {
+    max-width: 900px;
+    margin: 0 auto;
+    background-color: #fff;
+    border: 1px solid var(--cor-borda);
+    border-radius: 8px;
+    padding: 2rem;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+}
+
+section {
+    margin-bottom: 2rem;
+}
+
+section h2 {
+    color: var(--cor-titulo);
+    font-size: 1.5rem;
+    margin-bottom: 0.8rem;
+    border-left: 5px solid var(--cor-primaria);
+    padding-left: 0.8rem;
+}
+
+section p {
+    margin-bottom: 1rem;
+    text-align: justify;
+}
+
+section ul {
+    margin-left: 1.5rem;
+    margin-top: 0.5rem;
+}
+
+section li {
+    margin-bottom: 0.5rem;
+}
+
+/* ===== Links ===== */
+a {
+    color: var(--cor-link);
+    text-decoration: none;
+    transition: color 0.3s ease;
+}
+
+a:hover {
+    color: var(--cor-link-hover);
+    text-decoration: underline;
+}
+
+/* ===== Rodapé ===== */
+footer {
+    text-align: center;
+    margin-top: 3rem;
+    font-size: 0.9rem;
+    color: #666;
+    border-top: 1px solid var(--cor-borda);
+    padding-top: 1rem;
+}
+
+/* ===== Responsividade ===== */
+@media (max-width: 768px) {
+    body {
+        padding: 1rem;
+    }
+
+    main {
+        padding: 1.5rem;
+    }
+
+    header h1 {
+        font-size: 1.8rem;
+    }
+
+    section h2 {
+        font-size: 1.3rem;
+    }
+}
+
+/* ===== Integração com modo escuro (modoEscuro.css) ===== */
+body.dark-mode {
+    background-color: #121212;
+    color: #eee;
+}
+
+body.dark-mode main {
+    background-color: #1e1e1e;
+    border-color: #333;
+}
+
+body.dark-mode h1,
+body.dark-mode h2 {
+    color: #a5d6a7;
+}
+
+body.dark-mode a {
+    color: #81c784;
+}
+
+body.dark-mode footer {
+    color: #aaa;
+    border-top-color: #333;
+}

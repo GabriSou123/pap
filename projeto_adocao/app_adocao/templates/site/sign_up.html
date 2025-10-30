@@ -27,8 +27,6 @@
                 {% else %}
                     <a style="font-size: 23px;" href="{% url 'sign_in' %}">Login</a>
                 {% endif %}
-                
-
             </nav>
         </header>
 
@@ -44,26 +42,30 @@
                 {{ form.username }}<br>
                 {{ form.username.errors }}<br>
 
-
                 <label style="margin-left: 30px; font-size: x-large;">Email:</label><br>
                 {{ form.email }}<br>
                 {{ form.email.errors }}<br>
-
 
                 <label style="margin-left: 30px; font-size: x-large;">Palavra Passe:</label><br>
                 {{ form.password1 }}<br>
                 {{ form.password1.errors }}<br>
 
-
                 <label style="margin-left: 30px; font-size: x-large;">Confirmar Palavra Passe:</label><br>
                 {{ form.password2 }}<br>
                 {{ form.password2.errors }}<br>
 
+                <br>
+                <div style="margin-left: 30px;">
+                    {{ form.aceitar_termos }} 
+                    <label style="font-size: larger;" for="{{ form.aceitar_termos.id_for_label }}">
+                        Aceito os <a href="/termos" target="_blank" class="sign_up">Termos e Condições</a>.
+                    </label><br>
+                    {{ form.aceitar_termos.errors }}
+                </div><br>
 
                 <div style="text-align: center;">
                     <button type="submit">Registar</button>
                 </div>
-                
             </form>
             {% if messages %}
                 <ul>
@@ -74,20 +76,20 @@
             {% endif %}
             <br><hr>
             <p style="margin-left: 0px; text-align: center; font-size: larger;">Já tem conta? <a class="sign_up" href="{% url 'sign_in' %}">Entrar</a></p>
-
         </div>
+
         <script>
             const toggleBtn = document.getElementById('darkModeToggle');
             const body = document.body;
-    
+
             if(localStorage.getItem('darkMode') === 'enabled') {
                 body.classList.add('dark-mode');
                 toggleBtn.textContent = "Modo Claro";
             }
-    
+
             toggleBtn.addEventListener('click', () => {
                 body.classList.toggle('dark-mode');
-    
+
                 if(body.classList.contains('dark-mode')) {
                     toggleBtn.textContent = "Modo Claro";
                     localStorage.setItem('darkMode', 'enabled');

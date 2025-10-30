@@ -33,6 +33,8 @@ def animaisadc(request, animal_id):
     animal = get_object_or_404(Animal, id=animal_id)
     return render(request, 'animais/animaisadc.html', {'animal': animal})
 
+def termos(request):
+    return render(request, 'site/termos.html')
 
 
 @login_required
@@ -58,11 +60,6 @@ def apadrinhar(request, animal_id):
 
     return render(request, 'site/apadrinhar.html', {'animal': animal})
 
-
-@login_required
-def confirmacao_apadrinhamento(request, animal_id):
-    animal = get_object_or_404(Animal, id=animal_id)
-    return render(request, 'site/confirmacao_apadrinhamento.html', {'animal': animal})
 
 
 
