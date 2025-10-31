@@ -4,6 +4,7 @@
         {% load static %}
         <link rel="stylesheet" href="{% static 'css/style.css' %}">
         <link rel="stylesheet" href="{% static 'css/modoEscuro.css' %}">
+        <link rel="stylesheet" href="{% static 'css/sobreNos.css' %}">
         <title> Adotar | Instituto Vida Animal </title>
         <link rel="icon" href="{% static 'imagens/logo.png' %}" type="image/png">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -33,9 +34,9 @@
         <main>
             <h1>A nossa história</h1>
 
-            <div style="text-align: center;">
-                <img src="{% static 'imagens/edificio.png' %}" alt="Nosso trabalho" style="width: 1000px; height: 250px; border-radius: 10px; box-shadow: 0 4px 8px rgba(0,0,0,0.3); margin-top: 10px;">
-            </div>
+            <div class="imagem-sobre-nos">
+                <img src="{% static 'imagens/edificio.png' %}" alt="Nosso trabalho" class="imagem-edificio">
+            </div>            
             <br>
             <p>
                 O Instituto Vida Animal é uma organização dedicada à proteção e bem-estar dos animais.

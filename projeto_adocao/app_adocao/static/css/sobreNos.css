@@ -1,0 +1,15 @@
+/* ==========================
+   IMAGEM DA PÁGINA SOBRE NÓS
+   ========================== */
+   .imagem-sobre-nos {
+    text-align: center;
+    margin-top: 10px;
+}
+
+.imagem-edificio {
+    width: 100%;
+    max-width: 1000px;
+    height: 250px;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+}
