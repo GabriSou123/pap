@@ -12,20 +12,22 @@
 
     <body>
         <header class="cabecalho">
-            <div style="gap: 20px; display: flex; align-items: center;">
+            <div class="esquerda">
                 <img src="{% static 'imagens/logo.png' %}" alt="Logo do Instituto Vida Animal" class="logo">
-                <a class="home" style="font-size: 32px; font-family: cursive; font-weight: bolder;" href="/"> Instituto Vida Animal </a>
+                <a class="home" href="/">Instituto Vida Animal</a>
             </div>
 
+            <button class="menu-toggle">☰</button>
+
             <nav>
-                <a style="font-size: 23px;" href="../sobreNos">Sobre Nós</a>
-                <a style="font-size: 23px;" href="../adotar">Adotar</a>
-                <a style="font-size: 23px;" href="../contactos">Contactos</a>
+                <a href="../sobreNos">Sobre Nós</a>
+                <a href="../adotar">Adotar</a>
+                <a href="../contactos">Contactos</a>
                 {% if user.is_authenticated %}
-                    <span style="font-size: 20px; margin-right: 10px;">Olá, {{ user.username }}!</span>
-                    <a style="font-size: 23px;" href="{% url 'logout' %}">Logout</a>
+                    <span>Olá, {{ user.username }}!</span>
+                    <a href="{% url 'logout' %}">Logout</a>
                 {% else %}
-                    <a style="font-size: 23px;" href="{% url 'sign_in' %}">Login</a>
+                    <a href="{% url 'sign_in' %}">Login</a>
                 {% endif %}
             </nav>
         </header>
@@ -78,25 +80,33 @@
 </html>
 
     
-    <script>
-        const toggleBtn = document.getElementById('darkModeToggle');
-        const body = document.body;
+<script>
+    /* ======== MODO ESCURO ======== */
+    const toggleBtn = document.getElementById('darkModeToggle');
+    const body = document.body;
 
-        if(localStorage.getItem('darkMode') === 'enabled') {
-            body.classList.add('dark-mode');
+    if(localStorage.getItem('darkMode') === 'enabled') {
+        body.classList.add('dark-mode');
+        toggleBtn.textContent = "Modo Claro";
+    }
+
+    toggleBtn.addEventListener('click', () => {
+        body.classList.toggle('dark-mode');
+        if(body.classList.contains('dark-mode')) {
             toggleBtn.textContent = "Modo Claro";
+            localStorage.setItem('darkMode', 'enabled');
+        } else {
+            toggleBtn.textContent = "Modo Escuro";
+            localStorage.setItem('darkMode', 'disabled');
         }
+    });
 
-        toggleBtn.addEventListener('click', () => {
-            body.classList.toggle('dark-mode');
+    /* ======== MENU RESPONSIVO ======== */
+    const menuToggle = document.querySelector('.menu-toggle');
+    const nav = document.querySelector('nav');
 
-            if(body.classList.contains('dark-mode')) {
-                toggleBtn.textContent = "Modo Claro";
-                localStorage.setItem('darkMode', 'enabled');
-            } else {
-                toggleBtn.textContent = "Modo Escuro";
-                localStorage.setItem('darkMode', 'disabled');
-            }
-    xed4     });
-    </script>
+    menuToggle.addEventListener('click', () => {
+        nav.classList.toggle('active');
+    });
+</script>
 </html>

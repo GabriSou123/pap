@@ -6,6 +6,7 @@
     background-color: whitesmoke;
     margin: 0;
     color: #222;
+    padding-top: 160px;
 }
 
 h1 {
@@ -33,13 +34,17 @@ p {
     border-radius: 10px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.404);
     height: 150px;
-    gap: 16px;
     position: fixed;
     top: 0;
     left: 0;
     right: 0;
     z-index: 1000;
-    margin: 0;
+}
+
+.esquerda {
+    display: flex;
+    align-items: center;
+    gap: 20px;
 }
 
 .logo {
@@ -47,19 +52,26 @@ p {
     height: auto;
 }
 
-nav, .home {
+.home {
+    font-size: 32px;
+    font-family: cursive;
+    font-weight: bolder;
+    color: darkgreen;
+    text-decoration: none;
+}
+
+nav {
     font-family: cursive;
     display: flex;
     gap: 75px;
-    text-align-last: right;
-    font-size: larger;
+    align-items: center;
     font-weight: bolder;
-    margin-right: 70px;
 }
 
-body {
-    padding-top: 160px;
+nav a, nav span {
+    font-size: 23px;
 }
+
 
 /* ==========================
    LINKS
@@ -85,10 +97,6 @@ button {
     background-color: darkgreen;
     color: white;
     padding: 8px 20px;
-    text-align: center;
-    text-decoration: none;
-    font-size: medium;
-    margin: 5px 2px;
     border-radius: 8px;
     border: none;
     cursor: pointer;
@@ -98,23 +106,10 @@ button:hover {
     opacity: 0.9;
 }
 
-.btn-verde {
-    background-color: darkgreen;
-    color: white;
-}
-.btn-vermelho {
-    background-color: #b71c1c;
-    color: white;
-}
-.btn-voltar {
-    background-color: darkgreen;
-    color: white;
-}
-
 /* ==========================
-   CAIXAS COM AS INFORMAÇÕES
+   CONTEÚDO
    ========================== */
-   main {
+main {
     max-width: 1100px;
     margin: 50px auto;
     padding: 20px;
@@ -124,29 +119,7 @@ button:hover {
 }
 
 /* ==========================
-   MENSAGENS DE ERRO OU SUCESSO
-   ========================== */
-.messages {
-    margin: 20px 35px;
-    padding: 10px 15px;
-    border-radius: 8px;
-}
-
-.messages .success {
-    background-color: #c8e6c9;
-    color: #1b5e20;
-}
-.messages .warning {
-    background-color: #fff3cd;
-    color: #856404;
-}
-.messages .error {
-    background-color: #f8d7da;
-    color: #721c24;
-}
-
-/* ==========================
-   GALERIA DE IMAGENS
+   GALERIA
    ========================== */
 .galeria {
     display: flex;
@@ -155,26 +128,118 @@ button:hover {
     gap: 20px;
     padding: 20px;
 }
-
 .galeria img {
     width: calc(25% - 20px);
-    height: auto;
-    object-fit: cover;
     border-radius: 8px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
     transition: transform 0.3s ease;
 }
-
 .galeria img:hover {
     transform: scale(1.05);
 }
 
 /* ==========================
-   MEDIA QUERIES
+   MENU
    ========================== */
+.menu-toggle {
+    display: none;
+    background: none;
+    border: none;
+    font-size: 32px;
+    cursor: pointer;
+    color: darkgreen;
+}
+
+/* ==========================
+   RESPONSIVIDADE
+   ========================== */
+@media (max-width: 900px) {
+    .menu-toggle {
+        display: block;
+    }
+
+    nav {
+        display: none;
+        flex-direction: column;
+        align-items: center;
+        background-color: #daa520;
+        width: 100%;
+        position: absolute;
+        top: 150px;
+        left: 0;
+        border-radius: 0 0 10px 10px;
+        padding-bottom: 10px;
+    }
+
+    nav.active {
+        display: flex;
+    }
+
+    .cabecalho {
+        flex-wrap: wrap;
+        height: auto;
+        padding: 15px 20px;
+    }
+
+    .esquerda {
+        width: auto;
+        justify-content: flex-start;
+        gap: 15px;
+    }    
+
+    .logo {
+        width: 90px;
+    }
+
+    .home {
+        font-size: 26px;
+    }
+}
+
 @media (max-width: 1200px) {
     .galeria img {
         width: calc(33.33% - 20px);
+    }
+}
+
+@media (max-width: 900px) {
+    nav {
+        display: none;
+        flex-direction: column;
+        align-items: center;
+        background-color: #daa520;
+        width: 100%;
+        position: absolute;
+        top: 100%;
+        left: 0;
+        border-radius: 0 0 10px 10px;
+        padding: 10px 0;
+    }
+
+    .cabecalho {
+        flex-wrap: wrap;
+        height: auto;
+        padding: 15px 20px;
+        justify-content: space-between;
+    }
+
+    .esquerda {
+        width: auto;
+        justify-content: flex-start;
+        gap: 15px;
+    }
+
+    .menu-toggle {
+        display: block;
+        align-self: center;
+    }
+
+    .logo {
+        width: 90px;
+    }
+
+    .home {
+        font-size: 26px;
     }
 }
 
@@ -183,7 +248,6 @@ button:hover {
         width: calc(50% - 20px);
     }
 }
-
 @media (max-width: 500px) {
     .galeria img {
         width: 100%;

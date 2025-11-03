@@ -12,14 +12,16 @@
     </head>
 
     <body>
-        <header class="cabecalho">  
-            <div style="display: flex; align-items: center; gap: 15px;">
+        <header class="cabecalho">
+            <div style="gap: 20px; display: flex; align-items: center;">
                 <img src="{% static 'imagens/logo.png' %}" alt="Logo do Instituto Vida Animal" class="logo">
-                <a class="home" style="font-size: 26px; font-weight: bold;" href="/">Instituto Vida Animal</a>
+                <a class="home" style="font-size: 32px; font-family: cursive; font-weight: bolder;" href="/">Instituto Vida Animal</a>
             </div>
 
+            <button class="menu-toggle">☰</button>
+
             <nav>
-                <a style="font-size: 23px;" href="../../sobreNos" class="lista">Sobre Nós</a>
+                <a style="font-size: 23px;" href="../../sobreNos">Sobre Nós</a>
                 <a style="font-size: 23px;" href="../../adotar">Adotar</a>
                 <a style="font-size: 23px;" href="../../contactos">Contactos</a>
                 {% if user.is_authenticated %}

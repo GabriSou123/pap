@@ -14,9 +14,22 @@ body.dark-mode header.cabecalho {
     background-color: #1f1f1f;
 }
 
+/* MENU RESPONSIVO NO MODO ESCURO */
+body.dark-mode nav {
+    background-color: #1f1f1f !important;
+}
+
 body.dark-mode nav a,
-body.dark-mode span {
+body.dark-mode nav span {
     color: #e0e0e0;
+}
+
+body.dark-mode nav a:hover {
+    color: #81c784;
+}
+
+body.dark-mode nav span {
+    /* Se quiseres estilos adicionais para span dentro do nav, podes definir aqui */
 }
 
 body.dark-mode footer {
