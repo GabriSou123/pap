@@ -15,7 +15,7 @@
         <header class="cabecalho">
             <div style="gap: 20px; display: flex; align-items: center;">
                 <img src="{% static 'imagens/logo.png' %}" alt="Logo do Instituto Vida Animal" class="logo">
-                <a class="home" style="font-size: 32px; font-family: cursive; font-weight: bolder;" href="/">Instituto Vida Animal</a>
+                <a class="home" href="/">Instituto Vida Animal</a>
             </div>
 
             <button class="menu-toggle">☰</button>
@@ -41,7 +41,7 @@
                 <img src="{{ animal.imagem.url }}" alt="Imagem de {{ animal.nome }}">
             
                 <div class="animal-info">
-                    <p><strong>Espécie:</strong> {{ animal.especie }}</p>
+                    <p><strong>Espécie:</strong> {{ animal.get_especie_display }}</p>
                     <p><strong>Idade:</strong> {{ animal.idade }} anos</p>
                     <p><strong>Descrição:</strong> {{ animal.descricao }}</p>
             
@@ -56,23 +56,32 @@
         </main>
 
         <script>
+            /* ======== MODO ESCURO ======== */
             const toggleBtn = document.getElementById('darkModeToggle');
             const body = document.body;
 
-            if (localStorage.getItem('darkMode') === 'enabled') {
+            if(localStorage.getItem('darkMode') === 'enabled') {
                 body.classList.add('dark-mode');
                 toggleBtn.textContent = "Modo Claro";
             }
 
             toggleBtn.addEventListener('click', () => {
                 body.classList.toggle('dark-mode');
-                if (body.classList.contains('dark-mode')) {
+                if(body.classList.contains('dark-mode')) {
                     toggleBtn.textContent = "Modo Claro";
                     localStorage.setItem('darkMode', 'enabled');
                 } else {
                     toggleBtn.textContent = "Modo Escuro";
                     localStorage.setItem('darkMode', 'disabled');
                 }
+            });
+
+            /* ======== MENU RESPONSIVO ======== */
+            const menuToggle = document.querySelector('.menu-toggle');
+            const nav = document.querySelector('nav');
+
+            menuToggle.addEventListener('click', () => {
+                nav.classList.toggle('active');
             });
         </script>
     </body>
