@@ -110,13 +110,14 @@ button:hover {
     background-color: darkgreen !important;
     color: white;
     font-weight: bold;
+    padding: 10px 20px;
 }
 
 .btn-voltar {
     background-color: gray !important;
     color: white;
     font-weight: bold;
-    text-decoration: none; /* se for <a> */
+    text-decoration: none;
     padding: 10px 20px;
     border-radius: 8px;
     display: inline-block;
