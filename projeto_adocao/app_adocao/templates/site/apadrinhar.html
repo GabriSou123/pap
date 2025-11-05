@@ -61,10 +61,10 @@
                             {% csrf_token %}
                             <p>Deseja confirmar o apadrinhamento deste animal?</p>
                             <div class="botoes">
-                                <button type="submit" class="btn-verde">Confirmar Apadrinhamento</button>
                                 <a href="{% url 'adotar' %}">
                                     <button type="button" class="btn-voltar">Voltar à lista</button>
                                 </a>
+                                <button type="submit" class="btn-verde">Confirmar Apadrinhamento</button>
                             </div>
                         </form>
         
@@ -73,10 +73,10 @@
                         <form method="post">
                             {% csrf_token %}
                             <div class="botoes">
-                                <button type="submit" name="cancelar" class="btn-vermelho">Cancelar Apadrinhamento</button>
                                 <a href="{% url 'adotar' %}">
                                     <button type="button" class="btn-voltar">Voltar à lista</button>
                                 </a>
+                                <button type="submit" name="cancelar" class="btn-vermelho">Cancelar Apadrinhamento</button>
                             </div>
                         </form>
         
