@@ -2,100 +2,147 @@
 <html>
     <head>
         {% load static %}
+        <!-- Carrega o módulo 'static' do Django para poder usar arquivos estáticos (CSS, imagens, etc.) -->
+
+        <!-- Folhas de estilo CSS -->
         <link rel="stylesheet" href="{% static 'css/style.css' %}">
         <link rel="stylesheet" href="{% static 'css/adotar.css' %}">
         <link rel="stylesheet" href="{% static 'css/modoEscuro.css' %}">
+
+        <!-- Título da página -->
         <title> Adotar | Instituto Vida Animal </title>
+
+        <!-- Ícone que aparece na aba do navegador -->
         <link rel="icon" href="{% static 'imagens/logo.png' %}" type="image/png">
+
+        <!-- Responsividade: garante que o site se ajuste bem em telas pequenas (celulares, tablets, etc.) -->
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
     </head>
 
     <body>
+        <!-- ======== CABEÇALHO ======== -->
         <header class="cabecalho">
             <div class="esquerda">
+                <!-- Logo do instituto -->
                 <img src="{% static 'imagens/logo.png' %}" alt="Logo do Instituto Vida Animal" class="logo">
+                <!-- Nome do site com link para a página inicial -->
                 <a class="home" href="/">Instituto Vida Animal</a>
             </div>
 
+            <!-- Botão de menu para dispositivos móveis (menu hambúrguer) -->
             <button class="menu-toggle">☰</button>
 
+            <!-- Navegação principal -->
             <nav>
                 <a href="../sobreNos">Sobre Nós</a>
                 <a href="../adotar">Adotar</a>
                 <a href="../contactos">Contactos</a>
+
+                <!-- Se o usuário estiver autenticado, mostra saudação e link de logout -->
                 {% if user.is_authenticated %}
                     <span>Olá, {{ user.username }}!</span>
                     <a href="{% url 'logout' %}">Logout</a>
                 {% else %}
+                    <!-- Caso contrário, mostra link de login -->
                     <a href="{% url 'sign_in' %}">Login</a>
                 {% endif %}
             </nav>
         </header>
 
+        <!-- Botão para ativar/desativar o modo escuro -->
         <button id="darkModeToggle">Modo Escuro</button>
         <br>
+
         <h1>Animais para adoção</h1>
+
+        <!-- Formulário de filtro por espécie -->
         <form method="get">
             <label style="margin-left: 35px; font-family: Arial; font-weight: bolder;">Espécies de animais:</label>
             <select name="especie" onchange="this.form.submit()">
+                <!-- Opção para mostrar todos -->
                 <option value="" {% if not request.GET.especie %}selected{% endif %}>Todos</option>
+                <!-- Opção para gatos -->
                 <option value="gato" {% if request.GET.especie == "gato" %}selected{% endif %}>Gato</option>
+                <!-- Opção para cães -->
                 <option value="cao" {% if request.GET.especie == "cao" %}selected{% endif %}>Cão</option>
             </select>
         </form>
 
         <br>
+
+        <!-- Se houver animais cadastrados -->
         {% if animais %}
         <ul class="lista-animais">
             {% for animal in animais %}
                 <li>
                     <div class="caixa">
-                        <div hidden> {{ animal.id }}</div>
+                        <div hidden> {{ animal.id }}</div> <!-- ID do animal (oculto) -->
                         <br>
+
+                        <!-- Exibe a imagem do animal, se existir -->
                         {% if animal.imagem %}
                             <img src="{{ animal.imagem.url }}" alt="Imagem de {{ animal.nome }}" width="200">
                         {% endif %}
+
+                        <!-- Dados principais do animal -->
                         <h2> Nome: {{ animal.nome }} </h2>
                         <h2> Idade: {{ animal.idade }} anos</h2>
-                        <a href="{% url 'animais_detalhe' animal.id %}"><button> Ver detalhes </button></a>
+
+                        <!-- Link para a página de detalhes do animal -->
+                        <a href="{% url 'animais_detalhe' animal.id %}">
+                            <button> Ver detalhes </button>
+                        </a>
+
+                        <!-- Se o usuário estiver logado, mostra opção de apadrinhar -->
                         {% if user.is_authenticated %}
-                            <a href="{% url 'apadrinhar' animal.id %}"><button>Apadrinhar</button></a>
+                            <a href="{% url 'apadrinhar' animal.id %}">
+                                <button>Apadrinhar</button>
+                            </a>
                         {% endif %}
                     </div>
                 </li>
             {% endfor %}
         </ul>
-    {% else %}
-        <p>Não há animais cadastrados para a espécie selecionada.</p>
-    {% endif %}
 
+        {% else %}
+            <!-- Caso não haja animais cadastrados -->
+            <p>Não há animais cadastrados para a espécie selecionada.</p>
+        {% endif %}
     </body>
+
     <br><br>
+
+    <!-- ======== RODAPÉ ======== -->
     <footer>
         <hr>
         <p>
             &copy; 2025 Instituto Vida Animal. Todos os direitos reservados.
-            <a class="sign_up" style="margin-left: 35px;" href="https:/www.livroreclamacoes.pt/inicio" rel="noopener noreferrer" target="_blank">Livro de Reclamações</a>
+            <!-- Link para o livro de reclamações -->
+            <a class="sign_up" style="margin-left: 35px;" href="https:/www.livroreclamacoes.pt/inicio" rel="noopener noreferrer" target="_blank">
+                Livro de Reclamações
+            </a>
         </p>
     </footer>
 </html>
 
-    
+<!-- ======== JAVASCRIPT ======== -->
 <script>
     /* ======== MODO ESCURO ======== */
     const toggleBtn = document.getElementById('darkModeToggle');
     const body = document.body;
 
+    // Se o modo escuro estiver ativado no localStorage, aplica ao carregar a página
     if(localStorage.getItem('darkMode') === 'enabled') {
         body.classList.add('dark-mode');
-        toggleBtn.textContent = "Modo Claro";
+        toggleBtn.textContent = "Modo Claro"; // altera texto do botão
     }
 
+    // Alterna entre modo escuro e claro
     toggleBtn.addEventListener('click', () => {
         body.classList.toggle('dark-mode');
         if(body.classList.contains('dark-mode')) {
             toggleBtn.textContent = "Modo Claro";
-            localStorage.setItem('darkMode', 'enabled');
+            localStorage.setItem('darkMode', 'enabled'); // guarda preferência
         } else {
             toggleBtn.textContent = "Modo Escuro";
             localStorage.setItem('darkMode', 'disabled');
@@ -106,6 +153,7 @@
     const menuToggle = document.querySelector('.menu-toggle');
     const nav = document.querySelector('nav');
 
+    // Quando o botão ☰ é clicado, mostra ou esconde o menu de navegação
     menuToggle.addEventListener('click', () => {
         nav.classList.toggle('active');
     });

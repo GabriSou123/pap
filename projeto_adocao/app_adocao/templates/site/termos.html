@@ -2,15 +2,27 @@
 <html lang="pt">
     <head>
         {% load static %}
+        <!-- Carrega a tag "static" do Django para poder usar ficheiros estáticos (CSS, imagens, etc.) -->
+
         <meta charset="UTF-8">
+        <!-- Define a codificação de caracteres como UTF-8 (suporta acentuação e caracteres especiais) -->
+
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <!-- Torna o site responsivo (adapta-se a diferentes tamanhos de ecrã) -->
+
         <title>Termos e Condições | Instituto Vida Animal</title>
+        <!-- Título que aparece no separador do navegador -->
+
         <link rel="icon" href="{% static 'imagens/logo.png' %}" type="image/png">
+        <!-- Ícone do site (favicon) -->
+
+        <!-- Folhas de estilo CSS -->
         <link rel="stylesheet" href="{% static 'css/modoEscuro.css' %}">
         <link rel="stylesheet" href="{% static 'css/termos.css' %}">
     </head>
 
     <body>
+        <!-- ===== CABEÇALHO ===== -->
         <header>
             <h1>Termos e Condições de Uso</h1>
             <p class="data-atualizacao">
@@ -19,8 +31,12 @@
             </p>
         </header>
 
+        <!-- ===== CONTEÚDO PRINCIPAL ===== -->
         <main>
+            <!-- Botão para alternar entre modo escuro e modo claro -->
             <button id="darkModeToggle">Modo Escuro</button>
+
+            <!-- Secção de boas-vindas -->
             <section>
                 <h2>Bem-vindo(a) ao Instituto Vida Animal!</h2>
                 <p>
@@ -31,6 +47,7 @@
                 </p>
             </section>
 
+            <!-- Secção 1: Sobre o Instituto -->
             <section>
                 <h2>1. Sobre o Instituto Vida Animal</h2>
                 <p>
@@ -38,6 +55,7 @@
                 </p>
             </section>
 
+            <!-- Secção 2: Uso do site -->
             <section>
                 <h2>2. Uso do Site</h2>
                 <ul>
@@ -47,6 +65,7 @@
                 </ul>
             </section>
 
+            <!-- Secção 3: Processo de adoção -->
             <section>
                 <h2>3. Processo de Adoção</h2>
                 <ul>
@@ -57,6 +76,7 @@
                 </ul>
             </section>
 
+            <!-- Secção 4: Programa de apadrinhamento -->
             <section>
                 <h2>4. Programa de Apadrinhamento</h2>
                 <ul>
@@ -67,6 +87,7 @@
                 </ul>
             </section>
 
+            <!-- Secção 5: Doações -->
             <section>
                 <h2>5. Doações e Transparência</h2>
                 <ul>
@@ -76,6 +97,7 @@
                 </ul>
             </section>
 
+            <!-- Secção 6: Privacidade -->
             <section>
                 <h2>6. Privacidade e Proteção de Dados</h2>
                 <p>
@@ -84,6 +106,7 @@
                 </p>
             </section>
 
+            <!-- Secção 7: Direitos autorais -->
             <section>
                 <h2>7. Direitos Autorais</h2>
                 <p>
@@ -92,6 +115,7 @@
                 </p>
             </section>
 
+            <!-- Secção 8: Limitação de responsabilidade -->
             <section>
                 <h2>8. Limitação de Responsabilidade</h2>
                 <ul>
@@ -101,6 +125,7 @@
                 </ul>
             </section>
 
+            <!-- Secção 9: Alterações -->
             <section>
                 <h2>9. Alterações nos Termos</h2>
                 <p>
@@ -108,6 +133,7 @@
                 </p>
             </section>
 
+            <!-- Secção 10: Contactos -->
             <section>
                 <h2>10. Contato</h2>
                 <ul>
@@ -118,19 +144,24 @@
             </section>
         </main>
 
+        <!-- ===== RODAPÉ ===== -->
         <footer>
             <p>&copy; 2025 Instituto Vida Animal — Todos os direitos reservados.</p>
         </footer>
 
+        <!-- ===== SCRIPT: MODO ESCURO ===== -->
         <script>
+            // Seleciona o botão e o corpo do documento
             const toggleBtn = document.getElementById('darkModeToggle');
             const body = document.body;
 
+            // Se o utilizador já tinha o modo escuro ativo, aplica-o novamente
             if(localStorage.getItem('darkMode') === 'enabled') {
                 body.classList.add('dark-mode');
                 toggleBtn.textContent = "Modo Claro";
             }
 
+            // Alterna entre modo claro e escuro quando o botão é clicado
             toggleBtn.addEventListener('click', () => {
                 body.classList.toggle('dark-mode');
 

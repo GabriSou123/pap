@@ -2,16 +2,22 @@
 <html lang="pt">
     <head>
         {% load static %}
+        <!-- Permite usar ficheiros estáticos com o template engine do Django -->
+
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title>Apadrinhar | Instituto Vida Animal</title>
+
+        <!-- Folhas de estilo -->
         <link rel="stylesheet" href="{% static 'css/style.css' %}">
         <link rel="stylesheet" href="{% static 'css/animais.css' %}">
         <link rel="stylesheet" href="{% static 'css/modoEscuro.css' %}">
+
         <link rel="icon" href="{% static 'imagens/logo.png' %}" type="image/png">
     </head>
 
     <body>
+        <!-- ======== CABEÇALHO ======== -->
         <header class="cabecalho">
             <div class="esquerda">
                 <img src="{% static 'imagens/logo.png' %}" alt="Logo do Instituto Vida Animal" class="logo">
@@ -21,9 +27,12 @@
             <button class="menu-toggle">☰</button>
 
             <nav>
+                <!-- Links de navegação -->
                 <a href="../../sobreNos">Sobre Nós</a>
                 <a href="../../adotar">Adotar</a>
                 <a href="../../contactos">Contactos</a>
+
+                <!-- Área de autenticação -->
                 {% if user.is_authenticated %}
                     <span>Olá, {{ user.username }}!</span>
                     <a href="{% url 'logout' %}">Logout</a>
@@ -33,9 +42,12 @@
             </nav>
         </header>
 
+        <!-- ======== BOTÃO MODO ESCURO ======== -->
         <button id="darkModeToggle">Modo Escuro</button>
 
+        <!-- ======== CONTEÚDO PRINCIPAL ======== -->
         <main>
+            <!-- Mensagens do Django (sucesso, erro, aviso) -->
             {% if messages %}
                 <div class="messages">
                     {% for message in messages %}
@@ -47,6 +59,7 @@
             <h1>Apadrinhar {{ animal.nome }}</h1>
         
             <div class="animal-detalhes">
+                <!-- Imagem do animal -->
                 <img src="{{ animal.imagem.url }}" alt="{{ animal.nome }}">
         
                 <div class="animal-info">
@@ -56,7 +69,9 @@
         
                     <hr>
         
+                    <!-- ======== SEÇÃO DE APADRINHAMENTO ======== -->
                     {% if not animal.padrinho %}
+                        <!-- Caso o animal ainda não tenha padrinho -->
                         <form method="post">
                             {% csrf_token %}
                             <p>Deseja confirmar o apadrinhamento deste animal?</p>
@@ -67,21 +82,29 @@
                                 <button type="submit" class="btn-verde">Confirmar Apadrinhamento</button>
                             </div>
                         </form>
-        
+
                     {% elif animal.padrinho == user %}
-                        <p style="color: green; font-weight: bold;">É atualmente o padrinho/madrinha deste animal</p>
+                        <!-- Caso o utilizador atual já seja padrinho -->
+                        <p style="color: green; font-weight: bold;">
+                            É atualmente o padrinho/madrinha deste animal.
+                        </p>
                         <form method="post">
                             {% csrf_token %}
                             <div class="botoes">
                                 <a href="{% url 'adotar' %}">
                                     <button type="button" class="btn-voltar">Voltar à lista</button>
                                 </a>
-                                <button type="submit" name="cancelar" class="btn-vermelho">Cancelar Apadrinhamento</button>
+                                <button type="submit" name="cancelar" class="btn-vermelho">
+                                    Cancelar Apadrinhamento
+                                </button>
                             </div>
                         </form>
-        
+
                     {% else %}
-                        <p style="color: red; font-weight: bold;">Este animal já foi apadrinhado por outro utilizador.</p>
+                        <!-- Caso o animal já tenha padrinho diferente -->
+                        <p style="color: red; font-weight: bold;">
+                            Este animal já foi apadrinhado por outro utilizador.
+                        </p>
                         <div class="botoes">
                             <a href="{% url 'adotar' %}">
                                 <button type="button" class="btn-voltar">Voltar à lista</button>
@@ -91,20 +114,28 @@
                 </div>
             </div>
         </main>
+
+        <!-- ======== RODAPÉ ======== -->
         <br><br>
         <footer>
-        <hr>
-        <p>
-            &copy; 2025 Instituto Vida Animal. Todos os direitos reservados.
-            <a class="sign_up" style="margin-left: 35px;" href="https:/www.livroreclamacoes.pt/inicio" rel="noopener noreferrer" target="_blank">Livro de Reclamações</a>
-        </p>
-    </footer>
-        
+            <hr>
+            <p>
+                &copy; 2025 Instituto Vida Animal. Todos os direitos reservados.
+                <a class="sign_up" style="margin-left: 35px;"
+                   href="https:/www.livroreclamacoes.pt/inicio"
+                   rel="noopener noreferrer" target="_blank">
+                   Livro de Reclamações
+                </a>
+            </p>
+        </footer>
+
+        <!-- ======== SCRIPT JAVASCRIPT ======== -->
         <script>
             /* ======== MODO ESCURO ======== */
             const toggleBtn = document.getElementById('darkModeToggle');
             const body = document.body;
 
+            // Verifica se o utilizador já tinha ativado o modo escuro
             if(localStorage.getItem('darkMode') === 'enabled') {
                 body.classList.add('dark-mode');
                 toggleBtn.textContent = "Modo Claro";

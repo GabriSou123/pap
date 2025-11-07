@@ -2,68 +2,104 @@
 <html>
     <head>
         {% load static %}
+        <!-- Carrega a tag do Django para utilizar ficheiros estáticos (CSS, imagens, JS, etc.) -->
+
+        <!-- Ligações às folhas de estilo -->
         <link rel="stylesheet" href="{% static 'css/style.css' %}">
         <link rel="stylesheet" href="{% static 'css/contactos.css' %}">
         <link rel="stylesheet" href="{% static 'css/modoEscuro.css' %}">
+
         <title> Contactos | Instituto Vida Animal </title>
+        <!-- Título da página que aparece no separador do navegador -->
+
         <link rel="icon" href="{% static 'imagens/logo.png' %}" type="image/png">
+        <!-- Ícone (favicon) que aparece no separador do navegador -->
+
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <!-- Garante que o site é responsivo e se adapta a dispositivos móveis -->
     </head>
 
     <body>
+        <!-- ======== CABEÇALHO ======== -->
         <header class="cabecalho">
             <div class="esquerda">
+                <!-- Logótipo e nome do Instituto -->
                 <img src="{% static 'imagens/logo.png' %}" alt="Logo do Instituto Vida Animal" class="logo">
                 <a class="home" href="/">Instituto Vida Animal</a>
             </div>
 
+            <!-- Botão do menu (visível em ecrãs pequenos) -->
             <button class="menu-toggle">☰</button>
 
+            <!-- Menu de navegação principal -->
             <nav>
                 <a href="../sobreNos">Sobre Nós</a>
                 <a href="../adotar">Adotar</a>
                 <a href="../contactos">Contactos</a>
                 {% if user.is_authenticated %}
+                    <!-- Caso o utilizador esteja autenticado, mostra saudação e botão de logout -->
                     <span>Olá, {{ user.username }}!</span>
                     <a href="{% url 'logout' %}">Logout</a>
                 {% else %}
+                    <!-- Caso contrário, mostra botão de login -->
                     <a href="{% url 'sign_in' %}">Login</a>
                 {% endif %}
             </nav>
         </header>
 
+        <!-- ======== BOTÃO DO MODO ESCURO ======== -->
         <button id="darkModeToggle">Modo Escuro</button>
 
         <br>
+
+        <!-- ======== CONTEÚDO PRINCIPAL ======== -->
         <h1>Contactos</h1>
+
+        <!-- Informações de contacto -->
         <p style="margin-left: 35px; font-family: Arial; font-weight: bolder;">
             Telefone: 221 234 567 <br>
             Email: institutovidaanimal@gmail.com <br>
             Endereço: Rua dos Animais, 123, Vila Nova de Gaia, Portugal <br>
         </p>
+
+        <!-- ======== MAPA (Google Maps) ======== -->
         <div class="mapa">
-            <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3005.5807010410185!2d-8.615576577037258!3d41.121847578411!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0xd24652a79d7e659%3A0x777cd47377e6b55!2sEscola%20Profissional%20de%20Gaia!5e0!3m2!1spt-PT!2spt!4v1757611518662!5m2!1spt-PT!2spt" allowfullscreen="" ></iframe>
+            <!-- Mapa incorporado com localização (pode ser alterado no link do Google Maps) -->
+            <iframe 
+                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3005.5807010410185!2d-8.615576577037258!3d41.121847578411!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0xd24652a79d7e659%3A0x777cd47377e6b55!2sEscola%20Profissional%20de%20Gaia!5e0!3m2!1spt-PT!2spt!4v1757611518662!5m2!1spt-PT!2spt"
+                allowfullscreen="">
+            </iframe>
         </div>
     </body>
     
+    <!-- ======== RODAPÉ ======== -->
     <br><br>
     <footer>
         <hr>
         <p>
             &copy; 2025 Instituto Vida Animal. Todos os direitos reservados.
-            <a class="sign_up" style="margin-left: 35px;" href="https:/www.livroreclamacoes.pt/inicio" rel="noopener noreferrer" target="_blank">Livro de Reclamações</a>
+            <!-- Link externo para o Livro de Reclamações -->
+            <a class="sign_up" style="margin-left: 35px;" 
+               href="https:/www.livroreclamacoes.pt/inicio" 
+               rel="noopener noreferrer" target="_blank">
+               Livro de Reclamações
+            </a>
         </p>
     </footer>
+
+    <!-- ======== SCRIPT JAVASCRIPT ======== -->
     <script>
         /* ======== MODO ESCURO ======== */
         const toggleBtn = document.getElementById('darkModeToggle');
         const body = document.body;
 
+        // Se o utilizador já ativou o modo escuro anteriormente, aplica-o automaticamente
         if(localStorage.getItem('darkMode') === 'enabled') {
             body.classList.add('dark-mode');
             toggleBtn.textContent = "Modo Claro";
         }
 
+        // Alterna entre modo escuro e claro
         toggleBtn.addEventListener('click', () => {
             body.classList.toggle('dark-mode');
             if(body.classList.contains('dark-mode')) {
@@ -79,6 +115,7 @@
         const menuToggle = document.querySelector('.menu-toggle');
         const nav = document.querySelector('nav');
 
+        // Ativa/desativa o menu ao clicar no ícone ☰ (para dispositivos móveis)
         menuToggle.addEventListener('click', () => {
             nav.classList.toggle('active');
         });

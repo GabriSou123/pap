@@ -2,27 +2,43 @@
 <html>
     <head>
         {% load static %}
+        <!-- Carrega a tag 'static' do Django para referenciar ficheiros estáticos (CSS, imagens, etc.) -->
+
+        <!-- Liga as folhas de estilo (CSS) -->
         <link rel="stylesheet" href="{% static 'css/style.css' %}">
         <link rel="stylesheet" href="{% static 'css/modoEscuro.css' %}">
         <link rel="stylesheet" href="{% static 'css/sobreNos.css' %}">
+
+        <!-- Título da página -->
         <title> Adotar | Instituto Vida Animal </title>
+
+        <!-- Ícone que aparece no separador do navegador -->
         <link rel="icon" href="{% static 'imagens/logo.png' %}" type="image/png">
+
+        <!-- Meta tag para tornar o site responsivo (adapta-se a ecrãs de telemóveis, tablets, etc.) -->
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
     </head>
 
     <body>
+        <!-- Cabeçalho do site -->
         <header class="cabecalho">
             <div class="esquerda">
+                <!-- Logótipo do instituto -->
                 <img src="{% static 'imagens/logo.png' %}" alt="Logo do Instituto Vida Animal" class="logo">
+                <!-- Link para a página inicial -->
                 <a class="home" href="/">Instituto Vida Animal</a>
             </div>
 
+            <!-- Botão para abrir o menu em dispositivos móveis -->
             <button class="menu-toggle">☰</button>
 
+            <!-- Barra de navegação -->
             <nav>
                 <a href="../sobreNos">Sobre Nós</a>
                 <a href="../adotar">Adotar</a>
                 <a href="../contactos">Contactos</a>
+
+                <!-- Verifica se o utilizador está autenticado -->
                 {% if user.is_authenticated %}
                     <span>Olá, {{ user.username }}!</span>
                     <a href="{% url 'logout' %}">Logout</a>
@@ -31,15 +47,21 @@
                 {% endif %}
             </nav>
         </header>
+
+        <!-- Botão para alternar entre modo claro e modo escuro -->
         <button id="darkModeToggle">Modo Escuro</button>
 
+        <!-- Conteúdo principal da página -->
         <main>
             <h1>A nossa história</h1>
 
+            <!-- Imagem ilustrativa da secção "Sobre Nós" -->
             <div class="imagem-sobre-nos">
                 <img src="{% static 'imagens/edificio.png' %}" alt="Nosso trabalho" class="imagem-edificio">
             </div>
             <br>
+
+            <!-- Primeiro parágrafo de texto explicativo -->
             <p>
                 O Instituto Vida Animal é uma organização dedicada à proteção e bem-estar dos animais.
                 Fundado em 2005, o instituto tem como missão resgatar, cuidar e encontrar lares amorosos para animais abandonados ou em situação de risco.
@@ -47,6 +69,7 @@
                 Acreditamos que todos os animais merecem uma vida digna e feliz, e trabalhamos incansavelmente para garantir que cada um deles receba o amor e a atenção que merece.
             </p>
 
+            <!-- Segundo parágrafo -->
             <p>
                 Além disso, o Instituto Vida Animal colabora com outras organizações e autoridades locais para promover políticas públicas que favoreçam a proteção animal.
                 Nosso compromisso é criar um mundo onde humanos e animais possam coexistir em harmonia, respeitando as necessidades e direitos de cada ser vivo.
@@ -54,24 +77,31 @@
             </p>
         </main>
 
+        <!-- Rodapé -->
         <footer>
             <hr>
             <p>
                 &copy; 2025 Instituto Vida Animal. Todos os direitos reservados.
+                <!-- Link para o Livro de Reclamações -->
                 <a class="sign_up" style="margin-left: 35px;" href="https:/www.livroreclamacoes.pt/inicio" rel="noopener noreferrer" target="_blank">Livro de Reclamações</a>
             </p>
         </footer>
 
+        <!-- SCRIPT JAVASCRIPT -->
         <script>
             /* ======== MODO ESCURO ======== */
+
+            // Obtém o botão e o corpo da página
             const toggleBtn = document.getElementById('darkModeToggle');
             const body = document.body;
 
+            // Verifica se o modo escuro estava ativo na última visita (usando localStorage)
             if(localStorage.getItem('darkMode') === 'enabled') {
                 body.classList.add('dark-mode');
                 toggleBtn.textContent = "Modo Claro";
             }
 
+            // Alterna entre modo claro e escuro ao clicar no botão
             toggleBtn.addEventListener('click', () => {
                 body.classList.toggle('dark-mode');
                 if(body.classList.contains('dark-mode')) {
@@ -84,9 +114,12 @@
             });
 
             /* ======== MENU RESPONSIVO ======== */
+
+            // Seleciona o botão do menu e o próprio menu
             const menuToggle = document.querySelector('.menu-toggle');
             const nav = document.querySelector('nav');
 
+            // Mostra ou esconde o menu ao clicar no botão (útil para telemóveis)
             menuToggle.addEventListener('click', () => {
                 nav.classList.toggle('active');
             });

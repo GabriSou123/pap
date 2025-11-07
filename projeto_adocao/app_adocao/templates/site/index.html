@@ -2,52 +2,79 @@
 <html lang="pt">
     <head>
         {% load static %}
+        <!-- Carrega a tag 'static' do Django para poder usar ficheiros estáticos (CSS, imagens, etc.) -->
+
         <meta charset="UTF-8">
+        <!-- Define o conjunto de caracteres como UTF-8, garantindo suporte a acentuação -->
+
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <!-- Faz com que a página seja responsiva (adapta-se a ecrãs de telemóvel/tablet) -->
+
         <title>Instituto Vida Animal</title>
+        <!-- Título que aparece no separador do navegador -->
+
         <link rel="icon" href="{% static 'imagens/logo.png' %}" type="image/png">
+        <!-- Ícone do site (favicon) -->
+
+        <!-- Folhas de estilo -->
         <link rel="stylesheet" href="{% static 'css/style.css' %}">
         <link rel="stylesheet" href="{% static 'css/modoEscuro.css' %}">
     </head>
 
     <body>
+        <!-- ======== CABEÇALHO ======== -->
         <header class="cabecalho">
             <div class="esquerda">
+                <!-- Logótipo -->
                 <img src="{% static 'imagens/logo.png' %}" alt="Logo do Instituto Vida Animal" class="logo">
+
+                <!-- Nome do site com link para a página inicial -->
                 <a class="home" href="/">Instituto Vida Animal</a>
             </div>
 
+            <!-- Botão para abrir o menu no modo mobile -->
             <button class="menu-toggle">☰</button>
 
+            <!-- Menu de navegação -->
             <nav>
                 <a href="../sobreNos">Sobre Nós</a>
                 <a href="../adotar">Adotar</a>
                 <a href="../contactos">Contactos</a>
+
                 {% if user.is_authenticated %}
+                    <!-- Caso o utilizador esteja autenticado -->
                     <span>Olá, {{ user.username }}!</span>
                     <a href="{% url 'logout' %}">Logout</a>
                 {% else %}
+                    <!-- Caso contrário, mostra o botão de login -->
                     <a href="{% url 'sign_in' %}">Login</a>
                 {% endif %}
             </nav>
         </header>
 
+        <!-- ======== CONTEÚDO PRINCIPAL ======== -->
         <main>
+            <!-- Botão para alternar entre modo escuro e claro -->
             <button id="darkModeToggle">Modo Escuro</button> 
 
+            <!-- Título principal -->
             <h1>Bem-vindo ao Instituto Vida Animal</h1> 
+
+            <!-- Texto introdutório -->
             <p class="intro">
                 O <strong>Instituto Vida Animal</strong> é um espaço dedicado à proteção e adoção responsável de cães e gatos.  
                 Aqui, cada patinha conta uma história de esperança.  
                 Ajuda-nos a dar um novo começo a quem mais precisa. 
             </p>
 
+            <!-- Botão que direciona para a página de adoção/apadrinhamento -->
             <div style="text-align: center;">
                 <button class="botao-adotar" onclick="window.location.href='../adotar'">
                     Quero Apadrinhar um Amigo 
                 </button>
             </div>
 
+            <!-- ======== GALERIA DE IMAGENS ======== -->
             <div class="galeria">
                 <img src="{% static 'imagens/cao1.jpg' %}" alt="Cão para adoção">
                 <img src="{% static 'imagens/cao2.jpg' %}" alt="Cão para adoção">
@@ -60,24 +87,30 @@
         </main>
 
         <br><br>
+
+        <!-- ======== RODAPÉ ======== -->
         <footer>
             <hr>
             <p>
                 &copy; 2025 Instituto Vida Animal. Todos os direitos reservados.
+                <!-- Link externo para o Livro de Reclamações -->
                 <a class="sign_up" style="margin-left: 35px;" href="https:/www.livroreclamacoes.pt/inicio" rel="noopener noreferrer" target="_blank">Livro de Reclamações</a>
             </p>
         </footer>
 
+        <!-- ======== SCRIPT JAVASCRIPT ======== -->
         <script>
             /* ======== MODO ESCURO ======== */
             const toggleBtn = document.getElementById('darkModeToggle');
             const body = document.body;
 
+            // Se o modo escuro já estiver guardado no localStorage, ativa-o automaticamente
             if(localStorage.getItem('darkMode') === 'enabled') {
                 body.classList.add('dark-mode');
                 toggleBtn.textContent = "Modo Claro";
             }
 
+            // Alternar entre modo escuro e modo claro
             toggleBtn.addEventListener('click', () => {
                 body.classList.toggle('dark-mode');
                 if(body.classList.contains('dark-mode')) {
@@ -93,6 +126,7 @@
             const menuToggle = document.querySelector('.menu-toggle');
             const nav = document.querySelector('nav');
 
+            // Abre/fecha o menu ao clicar no ícone (☰) em ecrãs pequenos
             menuToggle.addEventListener('click', () => {
                 nav.classList.toggle('active');
             });

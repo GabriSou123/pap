@@ -2,61 +2,89 @@
 <html>
     <head>
         {% load static %}
+        <!-- Carrega a tag do Django que permite usar ficheiros estáticos (imagens, CSS, JS, etc.) -->
+
+        <!-- Folhas de estilo principais -->
         <link rel="stylesheet" href="{% static 'css/style.css' %}">
         <link rel="stylesheet" href="{% static 'css/logs.css' %}">
         <link rel="stylesheet" href="{% static 'css/modoEscuro.css' %}">
+
+        <!-- Título que aparece no separador do navegador -->
         <title> Registar-se | Instituto Vida Animal </title>
+
+        <!-- Ícone do site (favicon) -->
         <link rel="icon" href="{% static 'imagens/logo.png' %}" type="image/png">
+
+        <!-- Define que o site é responsivo (adapta-se a telemóveis e tablets) -->
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
     </head>
 
     <body>
+        <!-- ======== CABEÇALHO ======== -->
         <header class="cabecalho">
             <div class="esquerda">
+                <!-- Logótipo do Instituto -->
                 <img src="{% static 'imagens/logo.png' %}" alt="Logo do Instituto Vida Animal" class="logo">
+                <!-- Link para a página inicial -->
                 <a class="home" href="/">Instituto Vida Animal</a>
             </div>
 
+            <!-- Botão para abrir o menu em dispositivos móveis -->
             <button class="menu-toggle">☰</button>
 
+            <!-- Barra de navegação -->
             <nav>
                 <a href="../sobreNos">Sobre Nós</a>
                 <a href="../adotar">Adotar</a>
                 <a href="../contactos">Contactos</a>
                 {% if user.is_authenticated %}
+                    <!-- Se o utilizador estiver autenticado, mostra o nome e o botão de logout -->
                     <span>Olá, {{ user.username }}!</span>
                     <a href="{% url 'logout' %}">Logout</a>
                 {% else %}
+                    <!-- Caso contrário, mostra o link de login -->
                     <a href="{% url 'sign_in' %}">Login</a>
                 {% endif %}
             </nav>
         </header>
 
+        <!-- Botão para ativar o modo escuro -->
         <button id="darkModeToggle">Modo Escuro</button>
+
         <br><br><br>
+
+        <!-- ======== FORMULÁRIO DE REGISTO ======== -->
         <div class="signUpCaixa">
             <form method="POST" novalidate>
                 {% csrf_token %}
+                <!-- Proteção contra ataques CSRF (Cross-Site Request Forgery) obrigatória em formulários Django -->
                 <br>
+
+                <!-- Título do formulário -->
                 <h1 style="text-align: center; margin: 0px;">Registe-se</h1><br>
                 
+                <!-- Campo de Username -->
                 <label style="margin-left: 30px; font-size: x-large;">Username:</label><br>
                 {{ form.username }}<br>
                 {{ form.username.errors }}<br>
 
+                <!-- Campo de Email -->
                 <label style="margin-left: 30px; font-size: x-large;">Email:</label><br>
                 {{ form.email }}<br>
                 {{ form.email.errors }}<br>
 
+                <!-- Campo de Palavra-passe -->
                 <label style="margin-left: 30px; font-size: x-large;">Palavra Passe:</label><br>
                 {{ form.password1 }}<br>
                 {{ form.password1.errors }}<br>
 
+                <!-- Campo de confirmação de palavra-passe -->
                 <label style="margin-left: 30px; font-size: x-large;">Confirmar Palavra Passe:</label><br>
                 {{ form.password2 }}<br>
                 {{ form.password2.errors }}<br>
 
                 <br>
+                <!-- Aceitação dos Termos e Condições -->
                 <div style="margin-left: 30px;">
                     {{ form.aceitar_termos }} 
                     <label style="font-size: larger;" for="{{ form.aceitar_termos.id_for_label }}">
@@ -65,10 +93,13 @@
                     {{ form.aceitar_termos.errors }}
                 </div><br>
 
+                <!-- Botão para submeter o formulário -->
                 <div style="text-align: center;">
                     <button type="submit">Registar</button>
                 </div>
             </form>
+
+            <!-- Exibe mensagens de erro ou sucesso enviadas pela view Django -->
             {% if messages %}
                 <ul>
                 {% for message in messages %}
@@ -76,29 +107,42 @@
                 {% endfor %}
                 </ul>
             {% endif %}
+
             <br><hr>
-            <p style="margin-left: 0px; text-align: center; font-size: larger;">Já tem conta? <a class="sign_up" href="{% url 'sign_in' %}">Entrar</a></p>
+
+            <!-- Link para a página de login -->
+            <p style="margin-left: 0px; text-align: center; font-size: larger;">
+                Já tem conta? <a class="sign_up" href="{% url 'sign_in' %}">Entrar</a>
+            </p>
         </div>
 
         <br><br>
+
+        <!-- ======== RODAPÉ ======== -->
         <footer>
             <hr>
             <p>
                 &copy; 2025 Instituto Vida Animal. Todos os direitos reservados.
+                <!-- Link externo para o Livro de Reclamações -->
                 <a class="sign_up" style="margin-left: 35px;" href="https:/www.livroreclamacoes.pt/inicio" rel="noopener noreferrer" target="_blank">Livro de Reclamações</a>
             </p>
         </footer>
         
+        <!-- ======== SCRIPT JAVASCRIPT ======== -->
         <script>
             /* ======== MODO ESCURO ======== */
+
+            // Seleciona o botão e o corpo do documento
             const toggleBtn = document.getElementById('darkModeToggle');
             const body = document.body;
 
+            // Se o modo escuro estiver ativo no armazenamento local, aplica-o automaticamente
             if(localStorage.getItem('darkMode') === 'enabled') {
                 body.classList.add('dark-mode');
                 toggleBtn.textContent = "Modo Claro";
             }
 
+            // Alterna entre modo claro e escuro quando o botão é clicado
             toggleBtn.addEventListener('click', () => {
                 body.classList.toggle('dark-mode');
                 if(body.classList.contains('dark-mode')) {
@@ -111,9 +155,12 @@
             });
 
             /* ======== MENU RESPONSIVO ======== */
+
+            // Seleciona o botão do menu e a barra de navegação
             const menuToggle = document.querySelector('.menu-toggle');
             const nav = document.querySelector('nav');
 
+            // Mostra ou esconde o menu ao clicar (útil em ecrãs pequenos)
             menuToggle.addEventListener('click', () => {
                 nav.classList.toggle('active');
             });

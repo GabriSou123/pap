@@ -1,82 +1,148 @@
 <!DOCTYPE html>
 
-<!-- PÁGINA Entrar -->
+<!-- ======== PÁGINA DE LOGIN (Entrar) ======== -->
 <html>
     <head>
         {% load static %}
+        <!-- Carrega a tag 'static' do Django para permitir o uso de ficheiros estáticos (CSS, imagens, etc.) -->
+
+        <!-- Ficheiros de estilo -->
         <link rel="stylesheet" href="{% static 'css/style.css' %}">
         <link rel="stylesheet" href="{% static 'css/logs.css' %}">
         <link rel="stylesheet" href="{% static 'css/modoEscuro.css' %}">
+
+        <!-- Título do separador do navegador -->
         <title> Entrar | Instituto Vida Animal </title>
+
+        <!-- Ícone que aparece no separador -->
         <link rel="icon" href="{% static 'imagens/logo.png' %}" type="image/png">
+
+        <!-- Meta tag para tornar o site responsivo (adaptável a telemóveis e tablets) -->
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
     </head>
 
     <body>
+        <!-- ======== CABEÇALHO ======== -->
         <header class="cabecalho">
             <div class="esquerda">
+                <!-- Logótipo do Instituto -->
                 <img src="{% static 'imagens/logo.png' %}" alt="Logo do Instituto Vida Animal" class="logo">
+
+                <!-- Nome do instituto com link para a página inicial -->
                 <a class="home" href="/">Instituto Vida Animal</a>
             </div>
 
+            <!-- Botão para abrir/fechar o menu em dispositivos móveis -->
             <button class="menu-toggle">☰</button>
 
+            <!-- Menu de navegação -->
             <nav>
                 <a href="../sobreNos">Sobre Nós</a>
                 <a href="../adotar">Adotar</a>
                 <a href="../contactos">Contactos</a>
+
                 {% if user.is_authenticated %}
+                    <!-- Se o utilizador estiver autenticado, mostra o nome e opção de logout -->
                     <span>Olá, {{ user.username }}!</span>
                     <a href="{% url 'logout' %}">Logout</a>
                 {% else %}
+                    <!-- Caso contrário, mostra o link para login -->
                     <a href="{% url 'sign_in' %}">Login</a>
                 {% endif %}
             </nav>
         </header>
+
+        <!-- Botão para alternar entre modo escuro e modo claro -->
         <button id="darkModeToggle">Modo Escuro</button>
 
         <br><br><br>
+
+        <!-- ======== CAIXA DE LOGIN ======== -->
         <div class="signInCaixa"><br>
+            <!-- Formulário de login -->
             <form method="POST">
                 {% csrf_token %}
+                <!-- Proteção contra ataques CSRF obrigatória em formulários Django -->
+
                 <h1 style="text-align: center; margin: 0px;">Entrar</h1><br><br>
 
+                <!-- Campo para inserir o nome de utilizador -->
                 <label style="margin-left: 30px; font-size: x-large;">Username: </label><br>
-                <input style="margin-left: 30px; height: 20px; width: 400px;" type="text" name="username" required autocomplete="off"><br><br>
+                <input 
+                    style="margin-left: 30px; height: 20px; width: 400px;" 
+                    type="text" 
+                    name="username" 
+                    required 
+                    autocomplete="off">
+                <br><br>
 
+                <!-- Campo para inserir a palavra-passe -->
                 <label style="margin-left: 30px; font-size: x-large;">Palavra passe: </label><br>
-                <input style="margin-left: 30px; height: 20px; width: 400px;" type="password" name="password" required autocomplete="off"><br><br>
+                <input 
+                    style="margin-left: 30px; height: 20px; width: 400px;" 
+                    type="password" 
+                    name="password" 
+                    required 
+                    autocomplete="off">
+                <br><br>
                 
+                <!-- Botão de envio do formulário -->
                 <div style="text-align: center;">
-                    <button type="submit" style="font-size: large; background-color: darkgreen; color: white;">Entrar</button>
+                    <button 
+                        type="submit" 
+                        style="font-size: large; background-color: darkgreen; color: white;">
+                        Entrar
+                    </button>
                 </div>
-                
             </form>
+
             <br><hr>
-            <p style="margin-left: 0px; text-align: center; font-size: larger;">Ainda não tem conta? <a class="sign_up" href="../sign_up">Registe-se!</a></p>
+
+            <!-- Link para a página de registo -->
+            <p style="margin-left: 0px; text-align: center; font-size: larger;">
+                Ainda não tem conta? 
+                <a class="sign_up" href="../sign_up">Registe-se!</a>
+            </p>
         </div>
 
         <br><br>
+
+        <!-- ======== RODAPÉ ======== -->
         <footer>
             <hr>
             <p>
                 &copy; 2025 Instituto Vida Animal. Todos os direitos reservados.
-                <a class="sign_up" style="margin-left: 35px;" href="https:/www.livroreclamacoes.pt/inicio" rel="noopener noreferrer" target="_blank">Livro de Reclamações</a>
+                <!-- Link externo para o Livro de Reclamações -->
+                <a 
+                    class="sign_up" 
+                    style="margin-left: 35px;" 
+                    href="https:/www.livroreclamacoes.pt/inicio" 
+                    rel="noopener noreferrer" 
+                    target="_blank">
+                    Livro de Reclamações
+                </a>
             </p>
         </footer>
     </body>
+
+    <!-- ======== SCRIPT JAVASCRIPT ======== -->
     <script>
         /* ======== MODO ESCURO ======== */
+
+        // Seleciona o botão e o corpo da página
         const toggleBtn = document.getElementById('darkModeToggle');
         const body = document.body;
 
+        // Verifica se o utilizador já tinha o modo escuro ativo e aplica
         if(localStorage.getItem('darkMode') === 'enabled') {
             body.classList.add('dark-mode');
             toggleBtn.textContent = "Modo Claro";
         }
 
+        // Alterna entre modo escuro e modo claro ao clicar
         toggleBtn.addEventListener('click', () => {
             body.classList.toggle('dark-mode');
+
             if(body.classList.contains('dark-mode')) {
                 toggleBtn.textContent = "Modo Claro";
                 localStorage.setItem('darkMode', 'enabled');
@@ -87,13 +153,14 @@
         });
 
         /* ======== MENU RESPONSIVO ======== */
+
+        // Seleciona o botão e o menu de navegação
         const menuToggle = document.querySelector('.menu-toggle');
         const nav = document.querySelector('nav');
 
+        // Mostra/esconde o menu quando o botão é clicado (para telemóveis)
         menuToggle.addEventListener('click', () => {
             nav.classList.toggle('active');
         });
     </script>
 </html>
-
-
