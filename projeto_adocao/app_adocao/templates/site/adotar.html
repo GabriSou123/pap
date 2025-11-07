@@ -76,9 +76,6 @@
             {% for animal in animais %}
                 <li>
                     <div class="caixa">
-                        <div hidden> {{ animal.id }}</div> <!-- ID do animal (oculto) -->
-                        <br>
-
                         <!-- Exibe a imagem do animal, se existir -->
                         {% if animal.imagem %}
                             <img src="{{ animal.imagem.url }}" alt="Imagem de {{ animal.nome }}" width="200">
