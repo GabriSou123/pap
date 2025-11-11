@@ -105,7 +105,6 @@ button:hover {
     opacity: 0.9;
 }
 
-/* ---- Estilos específicos de botões ---- */
 .btn-verde {
     background-color: darkgreen !important;
     color: white;
@@ -131,12 +130,11 @@ button:hover {
     border-radius: 8px;
 }
 
-/* ---- Contêiner para botões ---- */
 .botoes {
     display: flex;
     gap: 15px;
     margin-top: 15px;
-    flex-wrap: wrap; /* permite quebrar linha em telas pequenas */
+    flex-wrap: wrap;
 }
 
 .btn-verde:hover,
@@ -236,7 +234,6 @@ main {
         font-size: 26px;
     }
 
-    /* Botões empilhados no mobile */
     .botoes {
         flex-direction: column;
         align-items: flex-start;
